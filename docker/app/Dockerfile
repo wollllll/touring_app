@@ -6,10 +6,6 @@ RUN apt-get update \
     && docker-php-ext-configure gd --with-png-dir=/usr/include --with-jpeg-dir=/usr/include \
     && docker-php-ext-install zip pdo_mysql gd
 
-# nodejs install
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install -y nodejs
-
 # composer install
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php -r "if (hash_file('SHA384', 'composer-setup.php') === '$(wget -q -O - https://composer.github.io/installer.sig)') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
