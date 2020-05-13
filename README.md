@@ -17,7 +17,8 @@ cd laravel_docker
 vagrant up
 vagrant ssh
 cd /var/www
-docker-compose exec app bash laravel new
+docker-compose exec app bash  
+laravel new
 ```
 
 上記行った後、下記ローカルipにアクセスでlaravelのwelcome画面表示  
