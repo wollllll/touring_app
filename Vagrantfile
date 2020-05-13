@@ -71,6 +71,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, run: "always", inline: <<-SHELL
     cd /var/www
     docker-compose up -d --build
+    cd src
+    cp .env.example
   SHELL
   # config.vm.provision :shell, run: "always", path: "run-docker-compose.sh"
 end
