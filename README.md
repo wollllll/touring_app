@@ -10,7 +10,7 @@ vagrant up
 vagrant ssh
 cd /var/www
 docker-compose exec app bash  
-laravel new
+composer create-project --prefer-dist laravel/laravel src
 ```
 ## DB設定
 ```
