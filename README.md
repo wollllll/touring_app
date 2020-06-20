@@ -2,13 +2,6 @@
 virtualbox 6.0  
 vagrant
 
-## インストール内容
-ホストos centos-7.4  
-docker latest    
-docker-compose latest  
-git latest  
-vim latest  
-
 ## インストール手順
 ```
 git clone git@github.com:wollllll/laravel_docker.git
