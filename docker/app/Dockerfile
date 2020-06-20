@@ -17,7 +17,5 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
 ENV PATH $PATH:/composer/vendor/bin
 
-WORKDIR /var/www/src
+WORKDIR /var/www
 
-# laravel install
-RUN composer global require "laravel/installer"
