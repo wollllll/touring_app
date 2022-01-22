@@ -1,0 +1,11 @@
+FROM node:16-alpine as node
+SHELL ["/bin/ash", "-oeux", "pipefail", "-c"]
+
+ENV TZ=Asia/Tokyo
+
+RUN apk update && \
+  apk add --update --no-cache --virtual=.build-dependencies g++
+
+#COPY default.conf /etc/nginx/conf.d/default.conf
+
+WORKDIR /var/www
