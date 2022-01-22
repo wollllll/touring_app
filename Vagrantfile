@@ -93,7 +93,6 @@ Vagrant.configure("2") do |config|
     sudo yum -y install vim
 
     cd /var/www
-#     docker-compose up -d --build
+    docker-compose up -d --build
   SHELL
-  # config.vm.provision :shell, run: "always", path: "run-docker-compose.sh"
 end
