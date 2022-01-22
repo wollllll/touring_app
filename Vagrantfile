@@ -6,10 +6,10 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-　config.vm.box = "bento/amazonlinux-2"
-　config.vm.network "private_network", ip: "192.168.33.10"
-　config.vm.synced_folder "./", "/var/www"
-　config.vm.provision :shell, run: "always", inline: <<-SHELL
+ config.vm.box = "bento/amazonlinux-2"
+ config.vm.network "private_network", ip: "192.168.33.10"
+ config.vm.synced_folder "./", "/var/www"
+ config.vm.provision :shell, run: "always", inline: <<-SHELL
     sudo yum -y update
 
     sudo dd if=/dev/zero of=/swapfile bs=1M count=2048
@@ -36,5 +36,5 @@ Vagrant.configure("2") do |config|
 
     cd /var/www
     docker-compose up -d --build
-　SHELL
+ SHELL
 end
