@@ -6,8 +6,7 @@ vagrant
 ```
 git clone git@github.com:wollllll/laravel_vagrant_docker.git
 cd laravel_vagrant_docker
-vagrant up
-vagrant ssh
+vagrant up && vagrant ssh
 cd /var/www
 make laravel-i
 ```
