@@ -1,5 +1,9 @@
 version: '3.3'
 
+networks:
+  backend:
+    driver: bridge
+
 services:
   php:
     build:
@@ -9,6 +13,8 @@ services:
       - mysql
     volumes:
       - .:/var/www:cached
+    networks:
+      - backend
   nginx:
     build:
       context: .
@@ -19,6 +25,8 @@ services:
       - .:/var/www:cached
     depends_on:
       - php
+    networks:
+      - backend
   mysql:
     build:
       context: .
@@ -31,3 +39,24 @@ services:
       TZ: 'Asia/Tokyo'
     ports:
       - 3306:3306
+    networks:
+      - backend
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - 1080:1080
+      - 1025:1025
+    networks:
+      - backend
+  minio:
+    image: minio/minio
+    container_name: 'hom-minio'
+    ports:
+      - 9000:9000
+      - 9090:9090
+    environment:
+      - MINIO_ROOT_USER=local
+      - MINIO_ROOT_PASSWORD=local
+    command: server /data --console-address :9090
+    networks:
+      - backend
