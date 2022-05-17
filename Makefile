@@ -8,7 +8,7 @@ d-destroy:
 	docker-compose down --rmi all --volumes --remove-orphans
 p-bash:
 	docker-compose exec php bash
-laravel-i:
+i-laravel:
 	docker-compose exec php composer create-project --prefer-dist laravel/laravel src
 	docker-compose exec php php src/artisan key:generate
 	docker-compose exec php chmod -R 777 src/storage
