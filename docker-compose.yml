@@ -50,7 +50,7 @@ services:
       - backend
   minio:
     image: minio/minio
-    container_name: 'hom-minio'
+    container_name: 'minio'
     ports:
       - 9000:9000
       - 9090:9090
