@@ -7,7 +7,7 @@ ENV COMPOSER_HOME=/composer
 COPY --from=composer:2.1 /usr/bin/composer /usr/bin/composer
 
 # todo 何をインストールしたらいいか調査
-ENV NGINX_DOCUMENT_ROOT /var/www
+ENV NGINX_DOCUMENT_ROOT /var/www/html
 ENV LC_ALL C.UTF-8
 
 RUN apt-get update \
@@ -41,4 +41,4 @@ RUN apt-get update \
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
   && docker-php-ext-install -j$(nproc) zip gd mysqli pdo_mysql opcache intl pgsql pdo_pgsql
 
-WORKDIR /var/www
+WORKDIR /var/www/html
