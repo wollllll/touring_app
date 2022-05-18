@@ -8,7 +8,7 @@
 Vagrant.configure("2") do |config|
  config.vm.box = "bento/amazonlinux-2"
  config.vm.network "private_network", ip: "192.168.33.10"
- config.vm.synced_folder "./", "/var/www"
+ config.vm.synced_folder "./", "/var/www/html"
  config.vm.provision :shell, run: "always", inline: <<-SHELL
     sudo yum -y update
 
@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
     # install vim
     sudo yum -y install vim
 
-    cd /var/www
+    cd /var/www/html
     docker-compose up -d --build
  SHELL
 end
