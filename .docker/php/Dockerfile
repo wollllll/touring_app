@@ -7,7 +7,7 @@ ENV COMPOSER_HOME=/composer
 COPY --from=composer:2.1 /usr/bin/composer /usr/bin/composer
 
 # todo 何をインストールしたらいいか調査
-ENV NGINX_DOCUMENT_ROOT /var/www/src
+ENV NGINX_DOCUMENT_ROOT /var/www
 ENV LC_ALL C.UTF-8
 
 RUN apt-get update \
