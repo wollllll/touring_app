@@ -33,6 +33,8 @@ Vagrant.configure("2") do |config|
 
     # install vim
     sudo yum -y install vim
+
+    cd /var/www
     docker-compose up -d --build
  SHELL
 end
