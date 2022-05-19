@@ -5,6 +5,7 @@
 /vendor
 .env
 .env.backup
+/client/.env
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
@@ -14,5 +15,4 @@ yarn-error.log
 /.vscode
 .vagrant
 /public/assets
-/resources/views/app.blade.php
-frontend
+/resources/views/index.blade.php
