@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+require __DIR__.'/auth.php';
 
 Route::prefix('admin')->group(function () {
-    Route::get('get', function () {
-        dd(11111);
-//    return view('app');
-    });
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->middleware(['auth'])->name('dashboard');
 });
 
 Route::get('{any}', function () {
     return view('index');
-})->where('any', '.*');
+})->where('any', '^.*');
