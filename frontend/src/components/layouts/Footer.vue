@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer bg-base-200 text-base-content p-10">
+  <footer class="bg-base-200 text-base-content footer p-10">
     <div>
       <svg
         width="50"
