@@ -7,9 +7,12 @@ const props = defineProps({
   label: String,
   id: String,
   placeholder: String,
+  value: String,
   required: Boolean,
   disabled: Boolean,
 })
+
+const value = props.value
 </script>
 
 <template>
@@ -23,6 +26,7 @@ const props = defineProps({
       :id="id"
       :disabled="disabled"
       class="input input-bordered w-full mt-1"
+      v-model="value"
     />
   </Base>
 </template>
