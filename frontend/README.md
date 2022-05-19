@@ -1,4 +1,4 @@
-# frontend
+# touring_app
 
 ## Project setup
 ```
