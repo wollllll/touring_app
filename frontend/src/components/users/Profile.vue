@@ -50,7 +50,7 @@ const props = defineProps({
         <span class="font-bold">100</span>&nbsp;フォロー
       </router-link>
       <router-link
-        :to="{ name: 'user_follow', params: { id: 1 } }"
+        :to="{ name: 'user_follower', params: { id: 1 } }"
         class="hover:opacity-75 ml-1"
       >
         <span class="font-bold">50</span>&nbsp;フォロワー
