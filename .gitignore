@@ -16,3 +16,6 @@ yarn-error.log
 .vagrant
 /public/assets
 /resources/views/index.blade.php
+/public/css
+/public/js
+/public/mix-manifest.json
