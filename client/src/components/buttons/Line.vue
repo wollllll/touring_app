@@ -2,7 +2,11 @@
   <button
     class="btn hover:opacity-75 grid w-full grid-cols-4 mt-5 normal-case shadow"
   >
-    <img src="img/line.png" class="w-10 h-10" alt="line logo" />
+    <img
+      :src="require(`@/../public/img/line.png`)"
+      class="w-10 h-10"
+      alt="line logo"
+    />
     <span class="col-span-2">ログイン with LINE</span>
   </button>
 </template>
