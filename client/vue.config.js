@@ -7,5 +7,12 @@ module.exports = defineConfig({
       : '/',
 　indexPath: process.env.NODE_ENV === 'production'
      　? '../../resources/views/index.blade.php'
-     　: 'index.html'
+     　: 'index.html',
+    devServer: {
+        proxy: {
+            '^/api': {
+                target: 'http://192.168.33.10'
+            }
+        }
+    }
 })

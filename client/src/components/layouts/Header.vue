@@ -1,8 +1,11 @@
 <script setup>
 import DropdownHeaderAvatar from '@/components/dropdowns/HeaderAvatar'
+import { authService } from '@/services/authService'
 import { storeService } from '@/services/storeService'
+import { computed } from 'vue'
 
 const APP_NAME = process.env.VUE_APP_APP_NAME
+const user = computed(() => authService.getters.auth().value)
 </script>
 
 <template>
@@ -24,7 +27,10 @@ const APP_NAME = process.env.VUE_APP_APP_NAME
         >
           <i class="bi-search text-xl" />
         </router-link>
-        <DropdownHeaderAvatar />
+        <DropdownHeaderAvatar v-if="user" />
+        <router-link v-else :to="{ name: 'auth_index' }">
+            <i class="bi bi-person-circle text-3xl ml-3" />
+        </router-link>
       </div>
     </div>
   </header>

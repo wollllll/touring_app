@@ -8,7 +8,11 @@ import { storeService } from '@/services/storeService'
 const logout = () => {
   auth
     .logout(authService.getters.token().value)
-    .then((response) => console.log(response))
+    .then(() => {
+      authService.commit.setToken('')
+      authService.commit.setAuth(null)
+      localStorage.removeItem('token')
+    })
     .catch((error) => console.log(error))
 }
 </script>
@@ -23,11 +27,6 @@ const logout = () => {
       <li>
         <router-link :to="{ name: 'user_show', params: { id: 1 } }">
           <IconWithText icon-class="bi-person"> アカウント </IconWithText>
-        </router-link>
-      </li>
-      <li>
-        <router-link :to="{ name: 'auth_index' }">
-          <IconWithText icon-class="bi-person"> アカウント作成 </IconWithText>
         </router-link>
       </li>
       <li>
