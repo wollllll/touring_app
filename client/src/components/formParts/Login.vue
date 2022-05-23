@@ -1,40 +1,31 @@
 <script setup>
+import { auth } from '@/axios/auth'
 import GoogleLogin from '@/components/buttons/Google'
 import LineLogin from '@/components/buttons/Line'
 import PrimaryButton from '@/components/buttons/PrimaryButton'
 import TwitterLogin from '@/components/buttons/Twitter'
 import Input from '@/components/formParts/Input'
 import IconWithText from '@/components/viewParts/IconWithText'
-import Axios from 'axios'
+import { authService } from '@/services/authService'
+import { useRouter } from 'vue-router'
 
-const axios = Axios.create({
-  baseURL: 'http://192.168.33.10/',
-  headers: { 'X-Requested-With': 'XMLHttpRequest' },
-  withCredentials: true,
-})
+const router = useRouter()
 
-const signIn = () => {
-  // ログイン処理前にCSRFトークンを初期化
-  axios.get('sanctum/csrf-cookie').then((response) => {
-    console.log(response)
+const login = () => {
+  auth
+    .login({ email: 'test@test', password: 'testtest' })
+    .then((response) => {
+      authService.commit.setToken(response.data.api_token)
 
-    axios
-      .post('api/login', {
-        email: 'sakin50guramu@gmail.com',
-        password: 'katou0406',
-      })
-      .then((r) => console.log(r))
-      .catch((e) => console.log(e))
-  })
-}
-
-const getUser = () => {
-  axios
-    .get('api/user', {
-      withCredentials: true,
+      auth
+        .get(response.data.api_token)
+        .then((response) => {
+          authService.commit.setAuth(response.data.auth)
+          router.push({ name: 'top' })
+        })
+        .catch((error) => console.log(error))
     })
-    .then((r) => console.log(r))
-    .catch((e) => console.log(e))
+    .catch((error) => console.log(error))
 }
 </script>
 
@@ -47,7 +38,6 @@ const getUser = () => {
     </div>
     <div class="divider lg:divider-horizontal" />
     <div class="place-items-center lg:py-5 grid flex-grow">
-      <button @click="getUser">get</button>
       <Input
         type="login_email"
         label="メールアドレス"
@@ -60,7 +50,7 @@ const getUser = () => {
         id="password"
         placeholder="パスワード"
       />
-      <PrimaryButton @click="signIn">
+      <PrimaryButton @click="login">
         <IconWithText icon-class="bi-lock"> ログイン </IconWithText>
       </PrimaryButton>
     </div>

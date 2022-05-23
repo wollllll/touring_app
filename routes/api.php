@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Api\Auth\GetAuthController;
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,18 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login', function (Request $request) {
-    $credentials = $request->validate([
-        "email" => ["required", "email"],
-        "password" => ["required"],
-    ]);
+Route::post('login', LoginController::class);
 
-    if (Auth::attempt($credentials)) {
-        return response()->json(Auth::user());
-    }
-    return response()->json([], 401);
-});
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', LogoutController::class);
+    Route::get('get/auth', GetAuthController::class);
 });

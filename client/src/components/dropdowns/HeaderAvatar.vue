@@ -1,7 +1,16 @@
 <script setup>
+import { auth } from '@/axios/auth'
 import Avatar from '@/components/users/Avatar'
 import IconWithText from '@/components/viewParts/IconWithText'
+import { authService } from '@/services/authService'
 import { storeService } from '@/services/storeService'
+
+const logout = () => {
+  auth
+    .logout(authService.getters.token().value)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error))
+}
 </script>
 
 <template>
@@ -30,7 +39,7 @@ import { storeService } from '@/services/storeService'
         </router-link>
       </li>
       <li>
-        <button type="button">
+        <button @click="logout" type="button">
           <IconWithText icon-class="bi-arrow-bar-right">
             ログアウト
           </IconWithText>
