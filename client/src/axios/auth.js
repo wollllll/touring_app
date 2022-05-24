@@ -1,9 +1,10 @@
 import { axios } from '@/axios/index'
-import {authService} from "@/services/authService";
+import { authService } from '@/services/authService'
 
-axios.base.get('api/get/auth')
-    .then(response => authService.commit.setAuth(response.data.auth))
-    .catch(error => console.log(error))
+axios.base
+  .get('api/get/auth')
+  .then((response) => authService.commit.setAuth(response.data.auth))
+  .catch((error) => console.log(error))
 
 export const auth = {
   login(data) {

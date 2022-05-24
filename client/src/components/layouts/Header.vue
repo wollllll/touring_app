@@ -29,7 +29,7 @@ const user = computed(() => authService.getters.auth().value)
         </router-link>
         <DropdownHeaderAvatar v-if="user" />
         <router-link v-else :to="{ name: 'auth_index' }">
-            <i class="bi bi-person-circle text-3xl ml-3" />
+          <i class="bi bi-person-circle ml-3 text-3xl" />
         </router-link>
       </div>
     </div>
