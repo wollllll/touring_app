@@ -11,7 +11,10 @@ module.exports = defineConfig({
     devServer: {
         proxy: {
             '^/api': {
-                target: 'http://192.168.33.10'
+                target: 'http://localhost:80'
+            },
+            '/sanctum/csrf-cookie': {
+                target: 'http://localhost:80'
             }
         }
     }

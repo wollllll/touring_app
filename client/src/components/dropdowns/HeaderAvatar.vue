@@ -7,11 +7,9 @@ import { storeService } from '@/services/storeService'
 
 const logout = () => {
   auth
-    .logout(authService.getters.token().value)
+    .logout()
     .then(() => {
-      authService.commit.setToken('')
       authService.commit.setAuth(null)
-      localStorage.removeItem('token')
     })
     .catch((error) => console.log(error))
 }

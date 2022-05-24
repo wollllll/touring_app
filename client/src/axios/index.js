@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 const base = Axios.create({
-  baseURL: 'http://192.168.33.10/api/',
+  baseURL: process.env.VUE_APP_API_URL,
   headers: { 'X-Requested-With': 'XMLHttpRequest' },
   withCredentials: true,
 })

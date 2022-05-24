@@ -15,9 +15,7 @@ const login = () => {
   auth
     .login({ email: 'test@test', password: 'testtest' })
     .then((response) => {
-      authService.commit.setToken(response.data.api_token)
       authService.commit.setAuth(response.data.auth)
-      localStorage.setItem('token', response.data.api_token)
       router.push({ name: 'top' })
     })
     .catch((error) => console.log(error))

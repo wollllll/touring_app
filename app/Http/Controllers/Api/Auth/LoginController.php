@@ -20,15 +20,8 @@ class LoginController extends Controller
             "password" => ["required"],
         ]);
 
-        if (auth()->attempt($credentials)) {
-            $token = $request->user()->createToken('auth');
+        if (!auth()->attempt($credentials)) return response()->json(['message' => 'error']);
 
-            return response()->json([
-                'auth' => auth()->user(),
-                'api_token' => $token->plainTextToken
-            ], 200);
-        }
-
-        return response()->json(['api_token' => null], 401);
+        return response()->json(['auth' => auth()->user()]);
     }
 }
