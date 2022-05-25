@@ -1,6 +1,6 @@
 ## 前提条件
-virtualbox 6.0  
-vagrant 
+virtualbox 6.1.34
+vagrant 2.2.19
 
 ## インストール手順
 ```
