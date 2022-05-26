@@ -44,7 +44,7 @@ const login = () => {
         placeholder="パスワード"
       />
       <PrimaryButton @click="login">
-        <IconWithText icon-class="bi-lock"> aログイン </IconWithText>
+        <IconWithText icon-class="bi-lock"> ログイン </IconWithText>
       </PrimaryButton>
     </div>
   </div>
