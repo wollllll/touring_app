@@ -42,9 +42,7 @@ services:
         networks:
             - backend
     node:
-        build:
-            context: .
-            dockerfile: .docker/node/Dockerfile
+        image: node:16.13.0
         tty: true
         environment:
             - NODE_ENV=development
@@ -52,7 +50,7 @@ services:
             - .:/var/www:cached
             - node_modules_volume:/var/www/node_modules
         ports:
-            - '3000:3000'
+            - '8080:8080'
         working_dir: /var/www
     mailcatcher:
         image: schickling/mailcatcher

@@ -11,13 +11,24 @@ import { GoogleMap, Marker } from 'vue3-google-map'
 
 const API_KEY = process.env.VUE_APP_GOOGLE_MAP_API_KEY
 const center = ref({ lat: 35.0889962, lng: 138.9533645 })
-
+const currentPosition = ref({})
 const showSpot = ref(spotService.getters.showSpot())
 
 const setShowSpot = (spot) => {
   center.value = { lat: spot.latitude, lng: spot.longitude }
   spotService.commit.setShowSpot(spot)
 }
+
+navigator.geolocation.getCurrentPosition((response) => {
+    currentPosition.value = {
+        position: {
+            lat: response.coords.latitude,
+            lng: response.coords.longitude
+        }
+    }
+}, (error) => {
+    alert('現在地を有効にしてください。')
+})
 </script>
 
 <template>
@@ -38,6 +49,9 @@ const setShowSpot = (spot) => {
       v-for="(spot, index) in spots"
       :options="{ position: { lat: spot.latitude, lng: spot.longitude } }"
     />
+      <Marker
+          :options="currentPosition"
+      />
     <PrimaryButton
       class="btn-sm top-3 absolute inset-x-0 w-2/3 max-w-xs mx-auto mt-0"
     >
