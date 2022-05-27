@@ -4,12 +4,19 @@ import Avatar from '@/components/users/Avatar'
 import IconWithText from '@/components/viewParts/IconWithText'
 import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
+import {alertService} from "@/services/alertService";
 
 const logout = () => {
   auth
     .logout()
     .then(() => {
       authService.commit.setAuth(null)
+        alertService.commit.setIsShownSuccess(true)
+        alertService.commit.setSuccessText('ログアウトしました。')
+        setTimeout(() => {
+            alertService.commit.setIsShownSuccess(false)
+            alertService.commit.setSuccessText('')
+        }, 3000)
     })
     .catch((error) => console.log(error))
 }
