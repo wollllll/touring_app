@@ -4,12 +4,12 @@ import CloseButton from '@/components/modals/CloseButton'
 import Profile from '@/components/users/Profile'
 import Carousel from '@/components/viewParts/Carousel'
 import IconWithText from '@/components/viewParts/IconWithText'
+import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
-import { storeService } from '@/services/storeService'
 import { ref } from 'vue'
 
 const show = ref(spotService.getters.showSpot())
-const isShowModal = storeService.getters.isShowSpotModal()
+const isShowModal = modalService.getters.isShownSpot()
 </script>
 
 <template>
@@ -20,7 +20,7 @@ const isShowModal = storeService.getters.isShowSpotModal()
       </IconWithText>
     </template>
     <template #close>
-      <CloseButton @click="storeService.commit.setIsShowSpotModal(false)" />
+      <CloseButton @click="modalService.commit.setIsShownSpot(false)" />
     </template>
     <template #content>
       <Carousel />

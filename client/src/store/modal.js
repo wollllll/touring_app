@@ -1,24 +1,24 @@
 export const modal = {
   namespaced: true,
   state: {
-    isCreateSpotModal: false,
-    isShowSpotModal: false,
-    isShowSearchModal: false,
+    isShownCreateSpot: false,
+    isShownSpot: false,
+    isShownSearch: false,
   },
   getters: {
-    isCreateSpotModal: (state) => state.isCreateSpotModal,
-    isShowSpotModal: (state) => state.isShowSpotModal,
-    isShowSearchModal: (state) => state.isShowSearchModal,
+    isShownCreateSpot: (state) => state.isShownCreateSpot,
+    isShownSpot: (state) => state.isShownSpot,
+    isShownSearch: (state) => state.isShownSearch,
   },
   mutations: {
-    setIsCreateSpotModal(state, bool) {
-      state.isCreateSpotModal = bool
+    setIsShownCreateSpot(state, bool) {
+      state.isShownCreateSpot = bool
     },
-    setIsShowSpotModal(state, bool) {
-      state.isShowSpotModal = bool
+    setIsShownSpot(state, bool) {
+      state.isShownSpot = bool
     },
-    setIsShowSearchModal(state, bool) {
-      state.isShowSearchModal = bool
+    setIsShownSearch(state, bool) {
+      state.isShownSearch = bool
     },
   },
 }

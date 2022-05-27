@@ -6,14 +6,14 @@ import Profile from '@/components/users/Profile'
 import Breadcrumb from '@/components/viewParts/Breadcrumb'
 import HeadingTitle from '@/components/viewParts/HeadingTitle'
 import { spots } from '@/fakers/spots'
+import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
-import { storeService } from '@/services/storeService'
 import { ref } from 'vue'
 
 const showSpot = ref(spotService.getters.showSpot())
 const setShowSpot = (spot) => {
   spotService.commit.setShowSpot(spot)
-  storeService.commit.setIsShowSpotModal(true)
+  modalService.commit.setIsShownSpot(true)
 }
 </script>
 

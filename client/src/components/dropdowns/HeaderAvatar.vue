@@ -3,7 +3,7 @@ import { auth } from '@/axios/auth'
 import Avatar from '@/components/users/Avatar'
 import IconWithText from '@/components/viewParts/IconWithText'
 import { authService } from '@/services/authService'
-import { storeService } from '@/services/storeService'
+import { modalService } from '@/services/modalService'
 
 const logout = () => {
   auth
@@ -30,7 +30,7 @@ const logout = () => {
       <li>
         <router-link
           :to="{ name: 'top' }"
-          @click="storeService.commit.setIsCreateSpotModal(true)"
+          @click="modalService.commit.setIsShownCreateSpot(true)"
         >
           <IconWithText icon-class="bi-geo-alt"> スポットの投稿 </IconWithText>
         </router-link>

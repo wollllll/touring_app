@@ -1,7 +1,7 @@
 <script setup>
 import DropdownHeaderAvatar from '@/components/dropdowns/HeaderAvatar'
 import { authService } from '@/services/authService'
-import { storeService } from '@/services/storeService'
+import { modalService } from '@/services/modalService'
 import { computed } from 'vue'
 
 const APP_NAME = process.env.VUE_APP_APP_NAME
@@ -22,7 +22,7 @@ const user = computed(() => authService.getters.auth().value)
       <div class="flex-none gap-2">
         <router-link
           :to="{ name: 'top' }"
-          @click="storeService.commit.setIsShowSearchModal(true)"
+          @click="modalService.commit.setIsShownSearch(true)"
           class="hover:opacity-75"
         >
           <i class="bi-search text-xl" />

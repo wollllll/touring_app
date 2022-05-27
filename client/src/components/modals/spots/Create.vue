@@ -5,9 +5,9 @@ import TextArea from '@/components/formParts/TextArea'
 import Base from '@/components/modals/Base'
 import CloseButton from '@/components/modals/CloseButton'
 import IconWithText from '@/components/viewParts/IconWithText'
-import { storeService } from '@/services/storeService'
+import { modalService } from '@/services/modalService'
 
-const isShowModal = storeService.getters.isCreateSpotModal()
+const isShowModal = modalService.getters.isShownCreateSpot()
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const isShowModal = storeService.getters.isCreateSpotModal()
       <IconWithText icon-class="bi-geo-alt"> スポットの投稿 </IconWithText>
     </template>
     <template #close>
-      <CloseButton @click="storeService.commit.setIsCreateSpotModal(false)" />
+      <CloseButton @click="modalService.commit.setIsShownCreateSpot(false)" />
     </template>
     <template #content>
       <div class="w-full h-40 bg-red-500">画像アップロード</div>

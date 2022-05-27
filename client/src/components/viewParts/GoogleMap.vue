@@ -4,8 +4,8 @@ import PrimaryButton from '@/components/buttons/PrimaryButton'
 import ShowSpot from '@/components/spots/Show'
 import IconWithText from '@/components/viewParts/IconWithText'
 import { spots } from '@/fakers/spots'
+import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
-import { storeService } from '@/services/storeService'
 import { ref } from 'vue'
 import { GoogleMap, Marker } from 'vue3-google-map'
 
@@ -67,7 +67,7 @@ navigator.geolocation.getCurrentPosition(
     >
       <ShowSpot
         :spot="showSpot"
-        @click="storeService.commit.setIsShowSpotModal(true)"
+        @click="modalService.commit.setIsShownSpot(true)"
       />
     </Information>
   </GoogleMap>

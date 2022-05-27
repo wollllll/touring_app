@@ -5,9 +5,9 @@ import Input from '@/components/formParts/Input'
 import Base from '@/components/modals/Base'
 import CloseButton from '@/components/modals/CloseButton'
 import IconWithText from '@/components/viewParts/IconWithText'
-import { storeService } from '@/services/storeService'
+import { modalService } from '@/services/modalService'
 
-const isShowModal = storeService.getters.isShowSearchModal()
+const isShowModal = modalService.getters.isShownSearch()
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const isShowModal = storeService.getters.isShowSearchModal()
       <IconWithText icon-class="bi-search"> スポットを検索 </IconWithText>
     </template>
     <template #close>
-      <CloseButton @click="storeService.commit.setIsShowSearchModal(false)" />
+      <CloseButton @click="modalService.commit.setIsShownSearch(false)" />
     </template>
     <template #content>
       <Input type="text" placeholder="検索" />
