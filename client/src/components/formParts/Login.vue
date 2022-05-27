@@ -19,7 +19,7 @@ const login = () => {
       authService.commit.setAuth(response.data.auth)
       router.push({ name: 'top' })
       alertService.commit.setIsShownSuccess(true)
-      alertService.commit.setSuccessText('ログインに成功しました！')
+      alertService.commit.setSuccessText('ログインしました。')
       setTimeout(() => {
         alertService.commit.setIsShownSuccess(false)
         alertService.commit.setSuccessText('')
