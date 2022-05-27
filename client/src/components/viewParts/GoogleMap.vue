@@ -19,16 +19,19 @@ const setShowSpot = (spot) => {
   spotService.commit.setShowSpot(spot)
 }
 
-navigator.geolocation.getCurrentPosition((response) => {
+navigator.geolocation.getCurrentPosition(
+  (response) => {
     currentPosition.value = {
-        position: {
-            lat: response.coords.latitude,
-            lng: response.coords.longitude
-        }
+      position: {
+        lat: response.coords.latitude,
+        lng: response.coords.longitude,
+      },
     }
-}, (error) => {
+  },
+  (error) => {
     alert('現在地を有効にしてください。')
-})
+  }
+)
 </script>
 
 <template>
@@ -49,9 +52,7 @@ navigator.geolocation.getCurrentPosition((response) => {
       v-for="(spot, index) in spots"
       :options="{ position: { lat: spot.latitude, lng: spot.longitude } }"
     />
-      <Marker
-          :options="currentPosition"
-      />
+    <Marker :options="currentPosition" />
     <PrimaryButton
       class="btn-sm top-3 absolute inset-x-0 w-2/3 max-w-xs mx-auto mt-0"
     >

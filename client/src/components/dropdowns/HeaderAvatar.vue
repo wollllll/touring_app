@@ -17,7 +17,7 @@ const logout = () => {
 
 <template>
   <div class="dropdown dropdown-end ml-3">
-    <Avatar size="w-10 h-10" />
+    <Avatar size="w-10 h-10" class="hover:opacity-75 cursor-pointer" />
     <ul
       tabindex="0"
       class="menu menu-compact dropdown-content bg-base-100 rounded-box w-52 p-2 mt-3 shadow"

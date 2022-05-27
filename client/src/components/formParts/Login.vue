@@ -6,6 +6,7 @@ import PrimaryButton from '@/components/buttons/PrimaryButton'
 import TwitterLogin from '@/components/buttons/Twitter'
 import Input from '@/components/formParts/Input'
 import IconWithText from '@/components/viewParts/IconWithText'
+import { alertService } from '@/services/alertService'
 import { authService } from '@/services/authService'
 import { useRouter } from 'vue-router'
 
@@ -17,6 +18,12 @@ const login = () => {
     .then((response) => {
       authService.commit.setAuth(response.data.auth)
       router.push({ name: 'top' })
+      alertService.commit.setIsShownSuccess(true)
+      alertService.commit.setSuccessText('ログインに成功しました！')
+      setTimeout(() => {
+        alertService.commit.setIsShownSuccess(false)
+        alertService.commit.setSuccessText('')
+      }, 3000)
     })
     .catch((error) => console.log(error))
 }
