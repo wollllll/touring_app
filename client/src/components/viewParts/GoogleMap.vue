@@ -3,17 +3,23 @@ import Information from '@/components/alerts/Information'
 import PrimaryButton from '@/components/buttons/PrimaryButton'
 import ShowSpot from '@/components/spots/Show'
 import IconWithText from '@/components/viewParts/IconWithText'
-import { spots } from '@/fakers/spots'
 import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
 import { ref } from 'vue'
 import { GoogleMap, Marker } from 'vue3-google-map'
+import { spot } from '@/axios/spot'
 
 const API_KEY = process.env.VUE_APP_GOOGLE_MAP_API_KEY
 const center = ref({ lat: 35.0889962, lng: 138.9533645 })
 const currentPosition = ref({})
 const showSpot = ref(spotService.getters.showSpot())
+const spots = ref({})
 
+spot.get().then(response => {
+    spots.value = response.data
+}).catch(error => {
+    console.log(error)
+})
 const setShowSpot = (spot) => {
   center.value = { lat: spot.latitude, lng: spot.longitude }
   spotService.commit.setShowSpot(spot)
