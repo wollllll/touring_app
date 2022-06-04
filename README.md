@@ -1,2 +1,2 @@
-権限付与
+権限付与  
 chown www-data storage/ -R
