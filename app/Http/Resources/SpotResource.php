@@ -17,11 +17,12 @@ class SpotResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user' => $this->user,
             'name' => $this->name,
             'content' => $this->content,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
-            'created_at' => $this->created_at
+            'created_at' => $this->created_at->format('Y-m-d H:i')
         ];
     }
 }

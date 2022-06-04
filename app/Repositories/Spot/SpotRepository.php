@@ -24,6 +24,9 @@ class SpotRepository extends Controller
      */
     public function get(): Collection
     {
-        return $this->spot->query()->get();
+        return $this->spot
+            ->query()
+            ->with(['user'])
+            ->get();
     }
 }
