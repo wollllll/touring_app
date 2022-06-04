@@ -16,7 +16,7 @@ const showSpot = ref(spotService.getters.showSpot())
 const spots = ref({})
 
 spot.get().then(response => {
-    spots.value = response.data
+    spots.value = response.data.spots
 }).catch(error => {
     console.log(error)
 })

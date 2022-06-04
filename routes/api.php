@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', LoginController::class);
+Route::get('get/spots', GetSpotController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', LogoutController::class);
 
     Route::prefix('get/')->group(function () {
         Route::get('auth', GetAuthController::class);
-        Route::get('spots', GetSpotController::class);
     });
 });
