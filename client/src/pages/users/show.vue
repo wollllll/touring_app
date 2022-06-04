@@ -1,7 +1,6 @@
 <script setup>
 import Base from '@/components/layouts/Base'
 import Section from '@/components/layouts/Section'
-import ShowSpot from '@/components/spots/Show'
 import Profile from '@/components/users/Profile'
 import Breadcrumb from '@/components/viewParts/Breadcrumb'
 import HeadingTitle from '@/components/viewParts/HeadingTitle'
@@ -9,12 +8,14 @@ import { spots } from '@/fakers/spots'
 import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
 import { ref } from 'vue'
+import {authService} from "@/services/authService";
 
-const showSpot = ref(spotService.getters.showSpot())
 const setShowSpot = (spot) => {
   spotService.commit.setShowSpot(spot)
   modalService.commit.setIsShownSpot(true)
 }
+
+const auth = ref(authService.getters.auth())
 </script>
 
 <template>
@@ -24,7 +25,7 @@ const setShowSpot = (spot) => {
       <HeadingTitle>プロフィール</HeadingTitle>
       <div class="card bg-white shadow">
         <div class="card-body">
-          <Profile :show-follow="true" />
+          <Profile v-if="auth" :show-follow="true" :user="auth" />
         </div>
       </div>
     </Section>

@@ -6,6 +6,9 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const props = defineProps({
+    user: {
+      type: Object
+    },
   showFollow: {
     type: Boolean,
     default: false,
@@ -22,7 +25,7 @@ const props = defineProps({
           @click="router.push({ name: 'user_show', params: { id: 1 } })"
         >
           <Avatar size="w-10 h-10" />
-          <p class="my-auto ml-3 font-bold">加藤タカヒロ</p>
+          <p class="my-auto ml-3 font-bold">{{ user.name }}</p>
         </div>
         <div class="flex items-center ml-3">
           <!-- todo: ログインユーザー以外は表示しない -->
@@ -40,7 +43,7 @@ const props = defineProps({
       </div>
     </div>
     <p class="mt-3">
-      プロフィールプロフィールプロフィールプロフィールプロフィールプロフィールプロフィールプロフィールプロフィールプロフィール
+      {{ user.profile  }}
     </p>
     <p v-if="showFollow" class="mt-3 text-sm text-right">
       <router-link

@@ -8,7 +8,7 @@ import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
 import { ref } from 'vue'
 
-const show = ref(spotService.getters.showSpot())
+const spot = ref(spotService.getters.showSpot())
 const isShowModal = modalService.getters.isShownSpot()
 </script>
 
@@ -16,7 +16,7 @@ const isShowModal = modalService.getters.isShownSpot()
   <Base :class="isShowModal ? 'modal-open' : ''">
     <template #title>
       <IconWithText icon-class="bi-geo-alt">
-        {{ show.title }}
+        {{ spot.name }}
       </IconWithText>
     </template>
     <template #close>
@@ -26,7 +26,7 @@ const isShowModal = modalService.getters.isShownSpot()
       <Carousel />
       <div class="flex justify-between">
         <div class="flex items-center">
-          <p class="font-bold">2022-4-30 10:00</p>
+          <p class="font-bold">{{ spot.created_at }}</p>
         </div>
         <label class="swap">
           <input type="checkbox" />
@@ -36,8 +36,8 @@ const isShowModal = modalService.getters.isShownSpot()
           />
         </label>
       </div>
-      <p>{{ show.content }}</p>
-      <Profile class="mt-5" :show-follow="true" />
+      <p>{{ spot.content }}</p>
+      <Profile v-if="spot.user" class="mt-5" :show-follow="true" :user="spot.user"/>
     </template>
   </Base>
 </template>
