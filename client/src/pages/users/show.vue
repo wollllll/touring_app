@@ -1,6 +1,7 @@
 <script setup>
 import Base from '@/components/layouts/Base'
 import Section from '@/components/layouts/Section'
+import ShowSpot from '@/components/spots/Show'
 import Profile from '@/components/users/Profile'
 import Breadcrumb from '@/components/viewParts/Breadcrumb'
 import HeadingTitle from '@/components/viewParts/HeadingTitle'
@@ -38,7 +39,7 @@ const auth = ref(authService.getters.auth())
           class="lg:odd:mr-auto lg:even:ml-auto lg:col-span-1 mb-6"
           style="width: 98%"
         >
-          <ShowSpot :spot="spot" @click="setShowSpot(spot)" />
+          <!--          <ShowSpot :spot="spot" @click="setShowSpot(spot)" />-->
         </li>
       </ul>
     </Section>
