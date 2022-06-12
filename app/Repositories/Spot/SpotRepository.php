@@ -22,7 +22,7 @@ class SpotRepository extends Controller
     /**
      * @return Collection
      */
-    public function get(): Collection
+    public function getWithUser(): Collection
     {
         return $this->spot
             ->query()

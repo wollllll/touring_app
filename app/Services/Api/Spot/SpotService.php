@@ -1,12 +1,12 @@
 <?php
 
-namespace App\UseCase\Spot;
+namespace App\Services\Api\Spot;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Spot\SpotRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class GetSpotUseCase extends Controller
+class SpotService extends Controller
 {
     /** @var SpotRepository $spotRepository */
     private SpotRepository $spotRepository;
@@ -22,8 +22,8 @@ class GetSpotUseCase extends Controller
     /**
      * @return Collection
      */
-    public function __invoke(): Collection
+    public function getSpotsWithUser(): Collection
     {
-        return $this->spotRepository->get();
+        return $this->spotRepository->getWithUser();
     }
 }

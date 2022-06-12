@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Spot\Get;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SpotResource;
-use App\UseCase\Spot\GetSpotUseCase;
+use App\UseCases\Api\Spot\GetSpotUseCase;
 use Illuminate\Http\JsonResponse;
 
 class GetSpotController extends Controller
