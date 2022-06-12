@@ -1,15 +1,15 @@
 <script setup>
 import PrimaryButton from '@/components/buttons/PrimaryButton'
+import FormControl from '@/components/formParts/FormControl'
 import Input from '@/components/formParts/Input'
 import Label from '@/components/formParts/Label'
 import TextArea from '@/components/formParts/TextArea'
 import Avatar from '@/components/users/Avatar'
 import IconWithText from '@/components/viewParts/IconWithText'
 import { authService } from '@/services/authService'
-import { computed, onBeforeMount, ref } from 'vue'
+import { computed } from 'vue'
 
-const user = ref({})
-user.value = computed(() => authService.getters.auth())
+const auth = computed(() => authService.getters.auth().value)
 </script>
 
 <template>
@@ -21,46 +21,72 @@ user.value = computed(() => authService.getters.auth())
       </div>
     </div>
     <div class="md:ml-20 w-full">
-      <!--        <FormControl>-->
-      <!--            <template #label>-->
-      <!--                <Label for="edit_user_name" :required="true">ユーザー名</Label>-->
-      <!--                <Input-->
-      <!--                    type="text"-->
-      <!--                    id="edit_user_name"-->
-      <!--                    placeholder="ユーザー名"-->
-      <!--                    :required="true"-->
-      <!--                    v-model="user.name"-->
-      <!--                />-->
-      <!--            </template>-->
-      <!--        </FormControl>-->
-      <!--      <Input-->
-      <!--        type="text"-->
-      <!--        label="ユーザー名"-->
-      <!--        id="edit_user_name"-->
-      <!--        placeholder="ユーザー名"-->
-      <!--        :required="true"-->
-      <!--        :value="user.name"-->
-      <!--      />-->
-      <!--      <Input-->
-      <!--        type="password"-->
-      <!--        label="パスワード"-->
-      <!--        id="edit_user_password"-->
-      <!--        placeholder="パスワード"-->
-      <!--        :required="true"-->
-      <!--      />-->
-      <!--      <Input-->
-      <!--        type="password"-->
-      <!--        label="パスワード再入力"-->
-      <!--        id="edit_user_password_confirm"-->
-      <!--        placeholder="パスワード再入力"-->
-      <!--        :required="true"-->
-      <!--      />-->
-      <!--      <TextArea-->
-      <!--        label="プロフィール"-->
-      <!--        id="edit_user_profile"-->
-      <!--        placeholder="プロフィール"-->
-      <!--        :rows="5"-->
-      <!--      />-->
+      <FormControl>
+        <template #label>
+          <Label for="edit_user_name" :required="true">ユーザー名</Label>
+        </template>
+        <template #input>
+          <Input
+            type="text"
+            id="edit_user_name"
+            placeholder="ユーザー名"
+            v-model="auth.name"
+          />
+        </template>
+      </FormControl>
+      <FormControl>
+        <template #label>
+          <Label for="edit_user_email" :required="true">メールアドレス</Label>
+        </template>
+        <template #input>
+          <Input
+            type="email"
+            id="edit_user_email"
+            placeholder="メールアドレス"
+            v-model="auth.email"
+          />
+        </template>
+      </FormControl>
+      <FormControl>
+        <template #label>
+          <Label for="edit_user_password" :required="true">パスワード</Label>
+        </template>
+        <template #input>
+          <Input
+            type="password"
+            id="edit_user_password"
+            placeholder="パスワード"
+          />
+        </template>
+      </FormControl>
+      <FormControl>
+        <template #label>
+          <Label for="edit_user_password_confirm" :required="true"
+            >パスワード再入力</Label
+          >
+        </template>
+        <template #input>
+          <Input
+            type="password"
+            id="edit_user_password_confirm"
+            placeholder="パスワード再入力"
+          />
+        </template>
+      </FormControl>
+      <FormControl>
+        <template #label>
+          <Label for="edit_user_profile" :required="true">プロフィール</Label>
+        </template>
+        <template #input>
+          <TextArea
+            label="プロフィール"
+            id="edit_user_profile"
+            placeholder="プロフィール"
+            :rows="5"
+            v-model="auth.profile"
+          />
+        </template>
+      </FormControl>
       <div class="mt-5 text-right">
         <PrimaryButton class="w-auto">
           <IconWithText icon-class="bi-save"> 保存 </IconWithText>

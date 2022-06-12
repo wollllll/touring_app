@@ -10,7 +10,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue'])
-const text = computed({
+const value = computed({
   get: () => props.modelValue,
   set: (value) => {
     emit('update:modelValue', value)
@@ -25,6 +25,6 @@ const text = computed({
     :id="id"
     :disabled="disabled"
     class="input input-bordered w-full mt-1"
-    v-model="text"
+    v-model="value"
   />
 </template>
