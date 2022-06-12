@@ -11,11 +11,11 @@ const props = defineProps({
   <div class="hover:opacity-75 flex cursor-pointer">
     <figure class="w-2/5">
       <div class="card">
-<!--        <img-->
-<!--          class="w-30 h-24"-->
-<!--          :src="require(`@/../public/img/${spot.image_url}`)"-->
-<!--          :alt="spot.title"-->
-<!--        />-->
+        <!--        <img-->
+        <!--          class="w-30 h-24"-->
+        <!--          :src="require(`@/../public/img/${spot.image_url}`)"-->
+        <!--          :alt="spot.title"-->
+        <!--        />-->
       </div>
     </figure>
     <div class="w-3/5 pl-4">

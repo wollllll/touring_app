@@ -5,10 +5,10 @@ import Profile from '@/components/users/Profile'
 import Breadcrumb from '@/components/viewParts/Breadcrumb'
 import HeadingTitle from '@/components/viewParts/HeadingTitle'
 import { spots } from '@/fakers/spots'
+import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
 import { ref } from 'vue'
-import {authService} from "@/services/authService";
 
 const setShowSpot = (spot) => {
   spotService.commit.setShowSpot(spot)

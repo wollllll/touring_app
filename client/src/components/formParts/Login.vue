@@ -4,22 +4,28 @@ import GoogleLogin from '@/components/buttons/Google'
 import LineLogin from '@/components/buttons/Line'
 import PrimaryButton from '@/components/buttons/PrimaryButton'
 import TwitterLogin from '@/components/buttons/Twitter'
+import FormControl from '@/components/formParts/FormControl'
 import Input from '@/components/formParts/Input'
+import Label from '@/components/formParts/Label'
 import IconWithText from '@/components/viewParts/IconWithText'
 import { alertService } from '@/services/alertService'
 import { authService } from '@/services/authService'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const email = ref('')
+const password = ref('')
 
 const login = () => {
   auth
-    .login({ email: 'test@test', password: 'testtest' })
+    .login({ email: email.value, password: password.value })
     .then((response) => {
       authService.commit.setAuth(response.data.auth)
       router.push({ name: 'top' })
       alertService.commit.setIsShownSuccess(true)
       alertService.commit.setSuccessText('ログインしました。')
+
       setTimeout(() => {
         alertService.commit.setIsShownSuccess(false)
         alertService.commit.setSuccessText('')
@@ -38,20 +44,36 @@ const login = () => {
     </div>
     <div class="divider lg:divider-horizontal" />
     <div class="place-items-center lg:py-5 grid flex-grow">
-      <Input
-        type="login_email"
-        label="メールアドレス"
-        id="email"
-        placeholder="メールアドレス"
-      />
-      <Input
-        type="login_password"
-        label="パスワード"
-        id="password"
-        placeholder="パスワード"
-      />
+      <FormControl>
+        <template #label>
+          <Label id="email" :required="true">メールアドレス</Label>
+        </template>
+        <template #input>
+          <Input
+            type="email"
+            label="メールアドレス"
+            id="email"
+            placeholder="メールアドレス"
+            v-model="email"
+          />
+        </template>
+      </FormControl>
+      <FormControl>
+        <template #label>
+          <Label id="password" :required="true">パスワード</Label>
+        </template>
+        <template #input>
+          <Input
+            type="password"
+            label="パスワード"
+            id="password"
+            placeholder="パスワード"
+            v-model="password"
+          />
+        </template>
+      </FormControl>
       <PrimaryButton @click="login">
-        <IconWithText icon-class="bi-lock"> ログイン </IconWithText>
+        <IconWithText icon-class="bi-lock"> ログイン</IconWithText>
       </PrimaryButton>
     </div>
   </div>

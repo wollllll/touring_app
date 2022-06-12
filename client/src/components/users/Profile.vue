@@ -6,9 +6,9 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const props = defineProps({
-    user: {
-      type: Object
-    },
+  user: {
+    type: Object,
+  },
   showFollow: {
     type: Boolean,
     default: false,
@@ -43,7 +43,7 @@ const props = defineProps({
       </div>
     </div>
     <p class="mt-3">
-      {{ user.profile  }}
+      {{ user.profile }}
     </p>
     <p v-if="showFollow" class="mt-3 text-sm text-right">
       <router-link

@@ -8,6 +8,7 @@ axios.base
 
 export const auth = {
   login(data) {
+    console.log(data)
     axios.csrf()
 
     return axios.base.post('api/login', {

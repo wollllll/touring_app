@@ -37,7 +37,12 @@ const isShowModal = modalService.getters.isShownSpot()
         </label>
       </div>
       <p>{{ spot.content }}</p>
-      <Profile v-if="spot.user" class="mt-5" :show-follow="true" :user="spot.user"/>
+      <Profile
+        v-if="spot.user"
+        class="mt-5"
+        :show-follow="true"
+        :user="spot.user"
+      />
     </template>
   </Base>
 </template>
