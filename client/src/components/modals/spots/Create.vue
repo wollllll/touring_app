@@ -58,6 +58,7 @@ const isShowModal = modalService.getters.isShownCreateSpot()
               label="緯度"
               id="create_latitude"
               placeholder="緯度"
+              disabled
               class="mt-0 mr-1"
             />
           </template>
@@ -72,6 +73,7 @@ const isShowModal = modalService.getters.isShownCreateSpot()
               label="経度"
               id="create_longitude"
               placeholder="経度"
+              disabled
               class="mt-0 ml-1"
             />
           </template>
