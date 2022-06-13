@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', LoginController::class);
-Route::resource('spots', SpotController::class);
+Route::resource('spots', SpotController::class)->only(['index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', LogoutController::class);
@@ -26,4 +26,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('get/')->group(function () {
         Route::get('auth', GetAuthController::class);
     });
+
+    Route::resource('spots', SpotController::class)->except(['index']);
 });
