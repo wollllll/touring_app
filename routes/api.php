@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\Auth\Get\GetAuthController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
-use App\Http\Controllers\Api\Spot\Get\GetSpotController;
+use App\Http\Controllers\Api\Spot\SpotController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', LoginController::class);
-Route::get('get/spots', GetSpotController::class);
+Route::resource('spots', SpotController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', LogoutController::class);
