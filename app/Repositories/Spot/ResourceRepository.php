@@ -2,23 +2,10 @@
 
 namespace App\Repositories\Spot;
 
-use App\Http\Controllers\Controller;
-use App\Models\Spot;
 use Illuminate\Database\Eloquent\Collection;
 
-class SpotRepository extends Controller
+class ResourceRepository extends BaseController
 {
-    /** @var Spot  */
-    private Spot $spot;
-
-    /**
-     * @param Spot $spot
-     */
-    public function __construct(Spot $spot)
-    {
-        $this->spot = $spot;
-    }
-
     /**
      * @return Collection
      */
