@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Spot;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\SpotResource;
+use App\Http\Resources\Spot\SpotResource;
 use App\UseCases\Api\Spot\ResourceUseCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
