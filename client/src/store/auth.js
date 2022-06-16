@@ -1,7 +1,7 @@
 export const auth = {
   namespaced: true,
   state: {
-    auth: {},
+    auth: null,
   },
   getters: {
     auth: (state) => state.auth,

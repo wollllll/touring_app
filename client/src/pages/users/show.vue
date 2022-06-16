@@ -4,18 +4,29 @@ import Section from '@/components/layouts/Section'
 import Profile from '@/components/users/Profile'
 import Breadcrumb from '@/components/viewParts/Breadcrumb'
 import HeadingTitle from '@/components/viewParts/HeadingTitle'
-import { spots } from '@/fakers/spots'
 import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
 import { ref } from 'vue'
+import ShowSpot from '@/components/spots/Show'
+import { spot } from '@/axios/spot'
 
+const spots = ref({})
 const setShowSpot = (spot) => {
   spotService.commit.setShowSpot(spot)
   modalService.commit.setIsShownSpot(true)
 }
 
 const auth = ref(authService.getters.auth())
+
+spot
+    .get()
+    .then((response) => {
+        spots.value = response.data.spots
+    })
+    .catch((error) => {
+        console.log(error)
+    })
 </script>
 
 <template>
@@ -38,7 +49,7 @@ const auth = ref(authService.getters.auth())
           class="lg:odd:mr-auto lg:even:ml-auto lg:col-span-1 mb-6"
           style="width: 98%"
         >
-          <!--          <ShowSpot :spot="spot" @click="setShowSpot(spot)" />-->
+            <ShowSpot :spot="spot" @click="setShowSpot(spot)" />
         </li>
       </ul>
     </Section>
