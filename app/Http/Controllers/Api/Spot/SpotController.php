@@ -4,19 +4,19 @@ namespace App\Http\Controllers\Api\Spot;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Spot\SpotResource;
-use App\UseCases\Api\Spot\ResourceUseCase;
+use App\UseCases\Api\Spot\SpotUseCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ResourceController extends Controller
+class SpotController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param ResourceUseCase $useCase
+     * @param SpotUseCase $useCase
      * @return JsonResponse
      */
-    public function index(ResourceUseCase $useCase): JsonResponse
+    public function index(SpotUseCase $useCase): JsonResponse
     {
         return response()->json(['spots' => SpotResource::collection($useCase->index())]);
     }

@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\Auth\Get\GetAuthController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
-use App\Http\Controllers\Api\Spot\ResourceController as SpotResourceController;
+use App\Http\Controllers\Api\Spot\SpotController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', LoginController::class);
-Route::resource('spots', SpotResourceController::class)->only(['index']);
+Route::resource('spots', SpotController::class)->only(['index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', LogoutController::class);
@@ -27,5 +27,5 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('auth', GetAuthController::class);
     });
 
-    Route::resource('spots', SpotResourceController::class)->except(['index']);
+    Route::resource('spots', SpotController::class)->except(['index']);
 });

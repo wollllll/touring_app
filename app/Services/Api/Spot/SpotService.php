@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Spot\ResourceRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class ResourceService extends Controller
+class SpotService extends Controller
 {
     /** @var ResourceRepository $spotRepository */
     private ResourceRepository $spotRepository;
@@ -22,8 +22,8 @@ class ResourceService extends Controller
     /**
      * @return Collection
      */
-    public function getSpotsWithUser(): Collection
+    public function getSpots(): Collection
     {
-        return $this->spotRepository->getWithUser();
+        return $this->spotRepository->get();
     }
 }

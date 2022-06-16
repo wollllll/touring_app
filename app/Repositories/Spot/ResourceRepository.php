@@ -9,7 +9,7 @@ class ResourceRepository extends BaseController
     /**
      * @return Collection
      */
-    public function getWithUser(): Collection
+    public function get(): Collection
     {
         return $this->spot
             ->query()
