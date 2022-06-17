@@ -6,9 +6,6 @@ const base = Axios.create({
   withCredentials: true,
 })
 
-const csrf = () => base.get('sanctum/csrf-cookie')
-
 export const axios = {
   base,
-  csrf,
 }

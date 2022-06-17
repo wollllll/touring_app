@@ -7,9 +7,43 @@ import TextArea from '@/components/formParts/TextArea'
 import Base from '@/components/modals/Base'
 import CloseButton from '@/components/modals/CloseButton'
 import IconWithText from '@/components/viewParts/IconWithText'
+import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
+import { spotService } from '@/services/spotService'
+import { computed, ref } from 'vue'
 
+const auth = computed(() => authService.getters.auth().value)
 const isShowModal = modalService.getters.isShownCreateSpot()
+
+const currentPosition = ref({})
+const name = ref('test')
+const content = ref('test con')
+
+const store = () => {
+  const position = currentPosition.value.position
+
+  spotService.store({
+    user_id: auth.value.id,
+    name: name.value,
+    content: content.value,
+    latitude: position.lat,
+    longitude: position.lng,
+  })
+}
+
+navigator.geolocation.getCurrentPosition(
+  (response) => {
+    currentPosition.value = {
+      position: {
+        lat: response.coords.latitude,
+        lng: response.coords.longitude,
+      },
+    }
+  },
+  (error) => {
+    alert('現在地を有効にしてください。')
+  }
+)
 </script>
 
 <template>
@@ -31,6 +65,7 @@ const isShowModal = modalService.getters.isShownCreateSpot()
             type="text"
             id="create_name"
             placeholder="例）静岡の隠れスポット"
+            v-model="name"
           />
         </template>
       </FormControl>
@@ -44,6 +79,7 @@ const isShowModal = modalService.getters.isShownCreateSpot()
             id="create_content"
             placeholder="例）景色が綺麗でおすすめです！"
             :rows="5"
+            v-model="content"
           />
         </template>
       </FormControl>
@@ -80,7 +116,7 @@ const isShowModal = modalService.getters.isShownCreateSpot()
         </FormControl>
       </div>
       <div class="mt-5 text-right">
-        <PrimaryButton class="btn-md w-auto">
+        <PrimaryButton @click="store()" class="btn-md w-auto">
           <IconWithText icon-class="bi bi-pencil-square"> 投稿 </IconWithText>
         </PrimaryButton>
       </div>

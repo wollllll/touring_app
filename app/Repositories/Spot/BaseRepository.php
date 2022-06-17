@@ -5,7 +5,7 @@ namespace App\Repositories\Spot;
 use App\Http\Controllers\Controller;
 use App\Models\Spot;
 
-class BaseController extends Controller
+class BaseRepository extends Controller
 {
     /** @var Spot  */
     protected Spot $spot;

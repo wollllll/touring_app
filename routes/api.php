@@ -27,5 +27,5 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('auth', GetAuthController::class);
     });
 
-    Route::resource('spots', SpotController::class)->except(['index']);
+    Route::resource('spots', SpotController::class)->only(['store', 'update', 'destroy']);
 });

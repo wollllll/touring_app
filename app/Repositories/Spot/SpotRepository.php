@@ -2,9 +2,10 @@
 
 namespace App\Repositories\Spot;
 
+use App\Models\Spot;
 use Illuminate\Database\Eloquent\Collection;
 
-class ResourceRepository extends BaseController
+class SpotRepository extends BaseRepository
 {
     /**
      * @return Collection
@@ -15,5 +16,15 @@ class ResourceRepository extends BaseController
             ->query()
             ->with(['user'])
             ->get();
+    }
+
+    /**
+     * @param array $inputs
+     * @return Spot
+     */
+    public function store(array $inputs): Spot
+    {
+        return $this->spot
+            ->create($inputs);
     }
 }

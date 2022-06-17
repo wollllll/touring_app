@@ -3,65 +3,39 @@
 namespace App\Http\Controllers\Api\Spot;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Spot\SpotResource;
 use App\UseCases\Api\Spot\SpotUseCase;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SpotController extends Controller
 {
+    /** @var SpotUseCase $useCase */
+    private SpotUseCase $useCase;
+
+    public function __construct(SpotUseCase $useCase)
+    {
+        $this->useCase = $useCase;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @param SpotUseCase $useCase
      * @return JsonResponse
      */
-    public function index(SpotUseCase $useCase): JsonResponse
+    public function index(): JsonResponse
     {
-        return response()->json(['spots' => SpotResource::collection($useCase->index())]);
+        return response()->json($this->useCase->index());
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
+     * @throws Exception
      */
-    public function create()
+    public function store(Request $request): JsonResponse
     {
-        return response('ok');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($this->useCase->store($request->input()));
     }
 
     /**

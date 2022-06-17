@@ -10,6 +10,15 @@ class Spot extends Model
 {
     use HasFactory;
 
+    /** @var string[]  */
+    protected $fillable = [
+        'user_id',
+        'name',
+        'content',
+        'latitude',
+        'longitude'
+    ];
+
     /**
      * @return BelongsTo
      */

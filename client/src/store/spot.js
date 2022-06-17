@@ -1,14 +1,19 @@
 export const spot = {
   namespaced: true,
   state: {
-    showSpot: {},
+    spots: [],
+    spot: {},
   },
   getters: {
-    showSpot: (state) => state.showSpot,
+    spots: (state) => state.spots,
+    spot: (state) => state.spot,
   },
   mutations: {
-    setShowSpot(state, spot) {
-      state.showSpot = spot
+    setSpots(state, spots) {
+      state.spots = spots
+    },
+    setSpot(state, spot) {
+      state.spot = spot
     },
   },
 }

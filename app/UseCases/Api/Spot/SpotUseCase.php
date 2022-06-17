@@ -3,27 +3,41 @@
 namespace App\UseCases\Api\Spot;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Spot\SpotResource;
 use App\Services\Api\Spot\SpotService;
-use Illuminate\Database\Eloquent\Collection;
 
 class SpotUseCase extends Controller
 {
     /** @var SpotService */
-    private SpotService $resourceService;
+    private SpotService $spotService;
 
     /**
-     * @param SpotService $resourceService
+     * @param SpotService $spotService
      */
-    public function __construct(SpotService $resourceService)
+    public function __construct(SpotService $spotService)
     {
-        $this->resourceService = $resourceService;
+        $this->spotService = $spotService;
     }
 
     /**
-     * @return Collection
+     * @return array
      */
-    public function index(): Collection
+    public function index(): array
     {
-        return $this->resourceService->getSpots();
+        return [
+            'spots' => SpotResource::collection($this->spotService->get())
+        ];
+    }
+
+    /**
+     * @param array $inputs
+     * @return array
+     * @throws \Exception
+     */
+    public function store(array $inputs): array
+    {
+        return [
+            'spot' => new SpotResource($this->spotService->store($inputs))
+        ];
     }
 }
