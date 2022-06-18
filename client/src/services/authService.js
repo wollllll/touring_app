@@ -1,3 +1,4 @@
+import { alertHelper } from '@/Helpers/AlertHepler'
 import { auth } from '@/axios/auth'
 import { alertService } from '@/services/alertService'
 import { store } from '@/store'
@@ -9,27 +10,16 @@ export const authService = {
       .login(inputs)
       .then((response) => {
         authService.commit.setAuth(response.data.auth)
-        alertService.commit.setIsShownSuccess(true)
-        alertService.commit.setSuccessText('ログインしました。')
-
-        setTimeout(() => {
-          alertService.commit.setIsShownSuccess(false)
-          alertService.commit.setSuccessText('')
-        }, 3000)
+        alertHelper.success(response.data.message)
       })
       .catch((error) => console.log(error))
   },
   logout() {
     auth
       .logout()
-      .then(() => {
+      .then((response) => {
         authService.commit.setAuth(null)
-        alertService.commit.setIsShownSuccess(true)
-        alertService.commit.setSuccessText('ログアウトしました。')
-        setTimeout(() => {
-          alertService.commit.setIsShownSuccess(false)
-          alertService.commit.setSuccessText('')
-        }, 3000)
+        alertHelper.success(response.data.message)
       })
       .catch((error) => console.log(error))
   },

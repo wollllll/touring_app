@@ -1,3 +1,4 @@
+import { alertHelper } from '@/Helpers/AlertHepler'
 import { spot } from '@/axios/spot'
 import { alertService } from '@/services/alertService'
 import { modalService } from '@/services/modalService'
@@ -19,12 +20,7 @@ export const spotService = {
         spotService.getters.spots().value.push(data.spot)
         spotService.commit.setSpots(spotService.getters.spots().value)
         modalService.commit.setIsShownSpotByCreate(false)
-        alertService.commit.setIsShownSuccess(true)
-        alertService.commit.setSuccessText(data.message)
-        setTimeout(() => {
-          alertService.commit.setIsShownSuccess(false)
-          alertService.commit.setSuccessText('')
-        }, 3000)
+        alertHelper.success(data.message)
       })
       .catch((error) => console.log(error))
   },
@@ -37,12 +33,7 @@ export const spotService = {
         spotService.commit.setSpot(data.spot)
         modalService.commit.setIsShownSpotByEdit(false)
         modalService.commit.setIsShownSpotByShow(false)
-        alertService.commit.setIsShownSuccess(true)
-        alertService.commit.setSuccessText(data.message)
-        setTimeout(() => {
-          alertService.commit.setIsShownSuccess(false)
-          alertService.commit.setSuccessText('')
-        }, 3000)
+        alertHelper.success(data.message)
       })
       .catch((error) => console.log(error))
   },
@@ -58,12 +49,7 @@ export const spotService = {
         spotService.commit.setSpots(spots)
         modalService.commit.setIsShownSpotByDestroy(false)
         modalService.commit.setIsShownSpotByShow(false)
-        alertService.commit.setIsShownSuccess(true)
-        alertService.commit.setSuccessText(response.data.message)
-        setTimeout(() => {
-          alertService.commit.setIsShownSuccess(false)
-          alertService.commit.setSuccessText('')
-        }, 3000)
+        alertHelper.success(data.message)
       })
       .catch((error) => console.log(error))
   },
