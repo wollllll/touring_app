@@ -2,18 +2,21 @@
 import PrimaryButton from '@/components/buttons/PrimaryButton'
 import Avatar from '@/components/users/Avatar'
 import { useRouter } from 'vue-router'
-
-const router = useRouter()
+import {computed} from "vue";
+import {authService} from "@/services/authService";
 
 const props = defineProps({
-  user: {
-    type: Object,
-  },
-  showFollow: {
-    type: Boolean,
-    default: false,
-  },
+    user: {
+        type: Object,
+    },
+    showFollow: {
+        type: Boolean,
+        default: false,
+    },
 })
+
+const router = useRouter()
+const auth = computed(() => authService.getters.auth().value)
 </script>
 
 <template>
@@ -28,9 +31,8 @@ const props = defineProps({
           <p class="my-auto ml-3 font-bold">{{ user.name }}</p>
         </div>
         <div class="flex items-center ml-3">
-          <!-- todo: ログインユーザー以外は表示しない -->
           <router-link
-            :to="{ name: 'user_edit', params: { id: 1 } }"
+            :to="{ name: 'user_edit', params: { id: user.id } }"
             class="hover:opacity-75"
           >
             <i class="bi bi-gear text-lg" />
@@ -38,8 +40,9 @@ const props = defineProps({
         </div>
       </div>
       <div class="flex items-center">
-        <!-- todo: ログインユーザー以外は表示しない -->
-        <PrimaryButton class="btn-sm w-auto mt-0"> フォロー中 </PrimaryButton>
+          <template v-if="auth">
+              <PrimaryButton v-if="user.id !== auth.id" class="btn-sm w-auto mt-0"> フォロー中 </PrimaryButton>
+          </template>
       </div>
     </div>
     <p class="mt-3">
@@ -47,13 +50,13 @@ const props = defineProps({
     </p>
     <p v-if="showFollow" class="mt-3 text-sm text-right">
       <router-link
-        :to="{ name: 'user_follow', params: { id: 1 } }"
+        :to="{ name: 'user_follow', params: { id: user.id } }"
         class="hover:opacity-75"
       >
         <span class="font-bold">100</span>&nbsp;フォロー
       </router-link>
       <router-link
-        :to="{ name: 'user_follow', params: { id: 1 } }"
+        :to="{ name: 'user_follow', params: { id: user.id } }"
         class="hover:opacity-75 ml-1"
       >
         <span class="font-bold">50</span>&nbsp;フォロワー
