@@ -16,7 +16,7 @@ class SpotsTableSeeder extends Seeder
     public function run()
     {
         $user = DB::table('users')->find(1);
-        $spots = [
+        $inserts = [
             [
                 'user_id' => $user->id,
                 'name' => '伊豆の吊り橋',
@@ -37,13 +37,15 @@ class SpotsTableSeeder extends Seeder
                 'content' => '伊豆の山ですー！！伊豆の山ですー！！伊豆の山ですー！！伊豆の山ですー！！伊豆の山ですー！！伊豆の山ですー！！伊豆の山ですー！！伊豆の山ですー！！伊豆の山ですー！！伊豆の山ですー！！伊豆の山ですー！！景色が最高！',
                 'latitude' => 35.1009962,
                 'longitude' => 138.9533645
+            ],
+            [
+                'user_id' => 2,
+                'name' => 'ユーザー2',
+                'content' => 'ユーザー2',
+                'latitude' => 35.1009962,
+                'longitude' => 138.8533645
             ]
         ];
-
-        $inserts = [];
-        for ($i = 0; $i <= 2; $i++) {
-            $inserts[] = Arr::get($spots, $i);
-        }
 
         DB::table('spots')->insert($inserts);
     }

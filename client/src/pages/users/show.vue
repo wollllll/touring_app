@@ -9,10 +9,12 @@ import Heading from '@/components/viewParts/Heading'
 import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const spots = ref({})
-const auth = ref(authService.getters.auth())
+const auth = computed(() => authService.getters.auth().value)
 
 const setSpot = (spot) => {
   spotService.commit.setSpot(spot)
@@ -20,7 +22,7 @@ const setSpot = (spot) => {
 }
 
 spot
-  .get()
+  .getByUserId({ user_id: route.params.id })
   .then((response) => (spots.value = response.data.spots))
   .catch((error) => console.log(error))
 </script>
