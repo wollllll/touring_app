@@ -12,6 +12,10 @@ import { computed } from 'vue'
 const isShowModal = modalService.getters.isShownSpotByShow()
 const spot = computed(() => spotService.getters.spot().value)
 const auth = computed(() => authService.getters.auth().value)
+
+const destroy = () => {
+  spotService.delete(spot.value.id)
+}
 </script>
 
 <template>
@@ -60,7 +64,7 @@ const auth = computed(() => authService.getters.auth().value)
               <li>
                 <router-link
                   :to="{ name: 'top' }"
-                  @click="modalService.commit.setIsShownSpotByCreate(true)"
+                  @click="destroy"
                   class="text-red-600"
                 >
                   <IconWithText icon-class="bi-trash"> 削除 </IconWithText>

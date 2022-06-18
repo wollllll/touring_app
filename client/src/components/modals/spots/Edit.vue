@@ -96,7 +96,7 @@ const update = () => {
         </FormControl>
       </div>
       <div class="mt-5 text-right">
-        <PrimaryButton @click="update()" class="btn-md w-auto">
+        <PrimaryButton @click="update" class="btn-md w-auto">
           <IconWithText icon-class="bi bi-arrow-repeat"> 更新 </IconWithText>
         </PrimaryButton>
       </div>

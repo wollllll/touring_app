@@ -38,7 +38,8 @@ class SpotUseCase extends Controller
     public function store(array $inputs): array
     {
         return [
-            'spot' => new SpotResource($this->spotService->store($inputs))
+            'spot' => new SpotResource($this->spotService->store($inputs)),
+            'message' => 'スポットを投稿しました！'
         ];
     }
 
@@ -51,7 +52,22 @@ class SpotUseCase extends Controller
     public function update(Spot $spot, array $inputs): array
     {
         return [
-            'spot' => new SpotResource($this->spotService->update($spot, $inputs))
+            'spot' => new SpotResource($this->spotService->update($spot, $inputs)),
+            'message' => 'スポットを更新しました！'
+        ];
+    }
+
+    /**
+     * @param Spot $spot
+     * @return array
+     * @throws \Exception
+     */
+    public function delete(Spot $spot): array
+    {
+        $this->spotService->delete($spot);
+
+        return [
+            'message' => 'スポットを削除しました！'
         ];
     }
 }

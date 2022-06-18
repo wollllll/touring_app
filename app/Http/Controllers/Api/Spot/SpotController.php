@@ -51,13 +51,12 @@ class SpotController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Spot $spot
+     * @return JsonResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Spot $spot): JsonResponse
     {
-        //
+        return response()->json($this->useCase->delete($spot));
     }
 }

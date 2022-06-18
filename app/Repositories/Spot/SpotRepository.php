@@ -38,4 +38,14 @@ class SpotRepository extends BaseRepository
         return $spot
             ->update($inputs);
     }
+
+    /**
+     * @param Spot $spot
+     * @return bool
+     */
+    public function delete(Spot $spot): bool
+    {
+        return $spot
+            ->delete();
+    }
 }

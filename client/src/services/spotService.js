@@ -14,10 +14,13 @@ export const spotService = {
     spot
       .store(inputs)
       .then((response) => {
-        spotService.getters.spots().value.push(response.data.spot)
+        const data = response.data
+
+        spotService.getters.spots().value.push(data.spot)
+        spotService.commit.setSpots(spotService.getters.spots().value)
         modalService.commit.setIsShownSpotByCreate(false)
         alertService.commit.setIsShownSuccess(true)
-        alertService.commit.setSuccessText('スポットを投稿しました！')
+        alertService.commit.setSuccessText(data.message)
         setTimeout(() => {
           alertService.commit.setIsShownSuccess(false)
           alertService.commit.setSuccessText('')
@@ -25,21 +28,44 @@ export const spotService = {
       })
       .catch((error) => console.log(error))
   },
-    update(id, inputs) {
-        spot
-            .update(id, inputs)
-            .then((response) => {
-                spotService.commit.setSpot(response.data.spot)
-                modalService.commit.setIsShownSpotByEdit(false)
-                alertService.commit.setIsShownSuccess(true)
-                alertService.commit.setSuccessText('スポットを更新しました！')
-                setTimeout(() => {
-                    alertService.commit.setIsShownSuccess(false)
-                    alertService.commit.setSuccessText('')
-                }, 3000)
-            })
-            .catch((error) => console.log(error))
-    },
+  update(id, inputs) {
+    spot
+      .update(id, inputs)
+      .then((response) => {
+        const data = response.data
+
+        spotService.commit.setSpot(data.spot)
+        modalService.commit.setIsShownSpotByEdit(false)
+        modalService.commit.setIsShownSpotByShow(false)
+        alertService.commit.setIsShownSuccess(true)
+        alertService.commit.setSuccessText(data.message)
+        setTimeout(() => {
+          alertService.commit.setIsShownSuccess(false)
+          alertService.commit.setSuccessText('')
+        }, 3000)
+      })
+      .catch((error) => console.log(error))
+  },
+  delete(id) {
+    spot
+      .delete(id)
+      .then((response) => {
+        const spots = spotService.getters
+          .spots()
+          .value.filter((spot) => spot.id !== id)
+
+        spotService.commit.setSpot({})
+        spotService.commit.setSpots(spots)
+        modalService.commit.setIsShownSpotByShow(false)
+        alertService.commit.setIsShownSuccess(true)
+        alertService.commit.setSuccessText(response.data.message)
+        setTimeout(() => {
+          alertService.commit.setIsShownSuccess(false)
+          alertService.commit.setSuccessText('')
+        }, 3000)
+      })
+      .catch((error) => console.log(error))
+  },
   getters: {
     spots() {
       return computed(() => store.getters['spot/spots'])

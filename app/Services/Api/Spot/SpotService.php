@@ -71,4 +71,22 @@ class SpotService extends Controller
             throw $e;
         }
     }
+
+    /**
+     * @param Spot $spot
+     * @throws \Exception
+     */
+    public function delete(Spot $spot): void
+    {
+        DB::beginTransaction();
+
+        try {
+            $this->spotRepository->delete($spot);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
 }

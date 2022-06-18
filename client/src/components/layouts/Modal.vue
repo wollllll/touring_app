@@ -1,8 +1,8 @@
 <script setup>
 import SearchModal from '@/components/modals/Search'
 import SpotModalByCreate from '@/components/modals/spots/Create'
-import SpotModalByShow from '@/components/modals/spots/Show'
 import SpotModalByEdit from '@/components/modals/spots/Edit'
+import SpotModalByShow from '@/components/modals/spots/Show'
 </script>
 
 <template>
@@ -10,6 +10,6 @@ import SpotModalByEdit from '@/components/modals/spots/Edit'
     <SearchModal />
     <SpotModalByShow />
     <SpotModalByCreate />
-      <SpotModalByEdit />
+    <SpotModalByEdit />
   </div>
 </template>
