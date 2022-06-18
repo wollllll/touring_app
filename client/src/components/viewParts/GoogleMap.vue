@@ -2,7 +2,7 @@
 import { spot } from '@/axios/spot'
 import Information from '@/components/alerts/Information'
 import PrimaryButton from '@/components/buttons/PrimaryButton'
-import ShowSpot from '@/components/spots/Show'
+import Spot from '@/components/spots/Show'
 import IconWithText from '@/components/viewParts/IconWithText'
 import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
@@ -12,7 +12,7 @@ import { GoogleMap, Marker } from 'vue3-google-map'
 const API_KEY = process.env.VUE_APP_GOOGLE_MAP_API_KEY
 const center = ref({ lat: 35.0889962, lng: 138.9533645 })
 const currentPosition = ref({})
-const showSpot = ref(spotService.getters.showSpot())
+const showSpot = computed(() => spotService.getters.spot().value)
 const spots = computed(() => spotService.getters.spots().value)
 
 spot
@@ -24,9 +24,9 @@ spot
     console.log(error)
   })
 
-const setShowSpot = (spot) => {
+const setSpot = (spot) => {
   center.value = { lat: spot.latitude, lng: spot.longitude }
-  spotService.commit.setShowSpot(spot)
+  spotService.commit.setSpot(spot)
 }
 
 navigator.geolocation.getCurrentPosition(
@@ -57,7 +57,7 @@ navigator.geolocation.getCurrentPosition(
     :keyboardShortcuts="false"
   >
     <Marker
-      @click="setShowSpot(spot)"
+      @click="setSpot(spot)"
       :key="index"
       v-for="(spot, index) in spots"
       :options="{ position: { lat: spot.latitude, lng: spot.longitude } }"
@@ -75,9 +75,9 @@ navigator.geolocation.getCurrentPosition(
       v-if="showSpot.id"
       class="bottom-3 sm:w-1/2 absolute inset-x-0 w-11/12 max-w-md mx-auto bg-white"
     >
-      <ShowSpot
+      <Spot
         :spot="showSpot"
-        @click="modalService.commit.setIsShownSpot(true)"
+        @click="modalService.commit.setIsShownSpotByShow(true)"
       />
     </Information>
   </GoogleMap>

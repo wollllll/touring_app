@@ -9,8 +9,8 @@ import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
 import { computed, ref } from 'vue'
 
-const isShowModal = modalService.getters.isShownSpot()
-const spot = computed(() => spotService.getters.showSpot().value)
+const isShowModal = modalService.getters.isShownSpotByShow()
+const spot = computed(() => spotService.getters.spot().value)
 const auth = computed(() => authService.getters.auth().value)
 </script>
 
@@ -22,7 +22,7 @@ const auth = computed(() => authService.getters.auth().value)
       </IconWithText>
     </template>
     <template #close>
-      <CloseButton @click="modalService.commit.setIsShownSpot(false)" />
+      <CloseButton @click="modalService.commit.setIsShownSpotByShow(false)" />
     </template>
     <template #content>
       <Carousel />
@@ -52,7 +52,7 @@ const auth = computed(() => authService.getters.auth().value)
               <li>
                 <router-link
                   :to="{ name: 'top' }"
-                  @click="modalService.commit.setIsShownCreateSpot(true)"
+                  @click="modalService.commit.setIsShownSpotByCreate(true)"
                 >
                   <IconWithText icon-class="bi-gear"> 編集 </IconWithText>
                 </router-link>
@@ -60,7 +60,7 @@ const auth = computed(() => authService.getters.auth().value)
               <li>
                 <router-link
                   :to="{ name: 'top' }"
-                  @click="modalService.commit.setIsShownCreateSpot(true)"
+                  @click="modalService.commit.setIsShownSpotByCreate(true)"
                   class="text-red-600"
                 >
                   <IconWithText icon-class="bi-trash"> 削除 </IconWithText>

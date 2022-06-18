@@ -13,7 +13,7 @@ import { spotService } from '@/services/spotService'
 import { computed, ref } from 'vue'
 
 const auth = computed(() => authService.getters.auth().value)
-const isShowModal = modalService.getters.isShownCreateSpot()
+const isShowModal = modalService.getters.isShownSpotByCreate()
 
 const currentPosition = ref({})
 const name = ref('')
@@ -55,7 +55,7 @@ navigator.geolocation.getCurrentPosition(
       <IconWithText icon-class="bi-geo-alt"> スポットの投稿 </IconWithText>
     </template>
     <template #close>
-      <CloseButton @click="modalService.commit.setIsShownCreateSpot(false)" />
+      <CloseButton @click="modalService.commit.setIsShownSpotByCreate(false)" />
     </template>
     <template #content>
       <div class="w-full h-40 bg-red-500">画像アップロード</div>

@@ -1,21 +1,21 @@
 export const modal = {
   namespaced: true,
   state: {
-    isShownCreateSpot: false,
-    isShownSpot: false,
+    isShownSpotByCreate: false,
+    isShownSpotByShow: false,
     isShownSearch: false,
   },
   getters: {
-    isShownCreateSpot: (state) => state.isShownCreateSpot,
-    isShownSpot: (state) => state.isShownSpot,
+    isShownSpotByCreate: (state) => state.isShownSpotByCreate,
+    isShownSpotByShow: (state) => state.isShownSpotByShow,
     isShownSearch: (state) => state.isShownSearch,
   },
   mutations: {
-    setIsShownCreateSpot(state, bool) {
-      state.isShownCreateSpot = bool
+    setIsShownSpotByCreate(state, bool) {
+      state.isShownSpotByCreate = bool
     },
-    setIsShownSpot(state, bool) {
-      state.isShownSpot = bool
+    setIsShownSpotByShow(state, bool) {
+      state.isShownSpotByShow = bool
     },
     setIsShownSearch(state, bool) {
       state.isShownSearch = bool

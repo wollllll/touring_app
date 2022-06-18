@@ -15,7 +15,7 @@ export const spotService = {
       .store(inputs)
       .then((response) => {
         spotService.getters.spots().value.push(response.data.spot)
-        modalService.commit.setIsShownCreateSpot(false)
+        modalService.commit.setIsShownSpotByCreate(false)
         alertService.commit.setIsShownSuccess(true)
         alertService.commit.setSuccessText('スポットを投稿しました！')
         setTimeout(() => {
@@ -34,7 +34,7 @@ export const spotService = {
      *
      * @returns {any}
      */
-    showSpot() {
+    spot() {
       return computed(() => store.getters['spot/spot'])
     },
   },
@@ -47,7 +47,7 @@ export const spotService = {
      *
      * @param spot
      */
-    setShowSpot(spot) {
+    setSpot(spot) {
       store.commit('spot/setSpot', spot)
     },
   },

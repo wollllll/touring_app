@@ -2,7 +2,7 @@
 import { spot } from '@/axios/spot'
 import Base from '@/components/layouts/Base'
 import Section from '@/components/layouts/Section'
-import ShowSpot from '@/components/spots/Show'
+import Spot from '@/components/spots/Show'
 import Profile from '@/components/users/Profile'
 import Breadcrumb from '@/components/viewParts/Breadcrumb'
 import HeadingTitle from '@/components/viewParts/HeadingTitle'
@@ -12,9 +12,9 @@ import { spotService } from '@/services/spotService'
 import { ref } from 'vue'
 
 const spots = ref({})
-const setShowSpot = (spot) => {
-  spotService.commit.setShowSpot(spot)
-  modalService.commit.setIsShownSpot(true)
+const setSpot = (spot) => {
+  spotService.commit.setSpot(spot)
+  modalService.commit.setIsShownSpotByShow(true)
 }
 
 const auth = ref(authService.getters.auth())
@@ -49,7 +49,7 @@ spot
           class="lg:odd:mr-auto lg:even:ml-auto lg:col-span-1 mb-6"
           style="width: 98%"
         >
-          <ShowSpot :spot="spot" @click="setShowSpot(spot)" />
+          <Spot :spot="spot" @click="setSpot(spot)" />
         </li>
       </ul>
     </Section>

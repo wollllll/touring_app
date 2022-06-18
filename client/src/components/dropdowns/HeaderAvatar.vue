@@ -40,7 +40,7 @@ const logout = () => {
       <li>
         <router-link
           :to="{ name: 'top' }"
-          @click="modalService.commit.setIsShownCreateSpot(true)"
+          @click="modalService.commit.setIsShownSpotByCreate(true)"
         >
           <IconWithText icon-class="bi-geo-alt"> スポットの投稿 </IconWithText>
         </router-link>

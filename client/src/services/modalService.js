@@ -3,22 +3,22 @@ import { computed } from 'vue'
 
 export const modalService = {
   getters: {
-    isShownCreateSpot() {
-      return computed(() => store.getters['modal/isShownCreateSpot'])
+    isShownSpotByCreate() {
+      return computed(() => store.getters['modal/isShownSpotByCreate'])
     },
-    isShownSpot() {
-      return computed(() => store.getters['modal/isShownSpot'])
+    isShownSpotByShow() {
+      return computed(() => store.getters['modal/isShownSpotByShow'])
     },
     isShownSearch() {
       return computed(() => store.getters['modal/isShownSearch'])
     },
   },
   commit: {
-    setIsShownCreateSpot(bool) {
-      store.commit('modal/setIsShownCreateSpot', bool)
+    setIsShownSpotByCreate(bool) {
+      store.commit('modal/setIsShownSpotByCreate', bool)
     },
-    setIsShownSpot(bool) {
-      store.commit('modal/setIsShownSpot', bool)
+    setIsShownSpotByShow(bool) {
+      store.commit('modal/setIsShownSpotByShow', bool)
     },
     setIsShownSearch(bool) {
       store.commit('modal/setIsShownSearch', bool)
