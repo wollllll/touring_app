@@ -6,14 +6,17 @@ import { alertService } from '@/services/alertService'
 import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 
 const user = computed(() => authService.getters.auth().value)
+const router = useRouter()
 
 const logout = () => {
   auth
     .logout()
     .then(() => {
       authService.commit.setAuth(null)
+      router.push({ name: 'top' })
       alertService.commit.setIsShownSuccess(true)
       alertService.commit.setSuccessText('ログアウトしました。')
       setTimeout(() => {
