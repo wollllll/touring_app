@@ -16,8 +16,8 @@ const auth = computed(() => authService.getters.auth().value)
 const isShowModal = modalService.getters.isShownCreateSpot()
 
 const currentPosition = ref({})
-const name = ref('test')
-const content = ref('test con')
+const name = ref('')
+const content = ref('')
 
 const store = () => {
   const position = currentPosition.value.position
@@ -29,6 +29,9 @@ const store = () => {
     latitude: position.lat,
     longitude: position.lng,
   })
+
+  name.value = ''
+  content.value = ''
 }
 
 navigator.geolocation.getCurrentPosition(
