@@ -4,7 +4,7 @@ import PrimaryButton from '@/components/buttons/PrimaryButton'
 import Input from '@/components/formParts/Input'
 import Base from '@/components/layouts/Base'
 import Section from '@/components/layouts/Section'
-import HeadingTitle from '@/components/viewParts/HeadingTitle'
+import Heading from '@/components/viewParts/Heading'
 import IconWithText from '@/components/viewParts/IconWithText'
 import Step from '@/components/viewParts/Step'
 import { useRouter } from 'vue-router'
@@ -15,7 +15,7 @@ const router = useRouter()
 <template>
   <Base>
     <Section>
-      <HeadingTitle>メールアドレス入力</HeadingTitle>
+      <Heading>メールアドレス入力</Heading>
       <Step />
       <Input
         type="text"

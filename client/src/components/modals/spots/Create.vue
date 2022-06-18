@@ -13,7 +13,9 @@ import { spotService } from '@/services/spotService'
 import { computed, ref } from 'vue'
 
 const auth = computed(() => authService.getters.auth().value)
-const isShowModal = modalService.getters.isShownSpotByCreate()
+const isShownModal = computed(
+  () => modalService.getters.isShownSpotByCreate().value
+)
 
 const currentPosition = ref({})
 const name = ref('')
@@ -50,7 +52,7 @@ navigator.geolocation.getCurrentPosition(
 </script>
 
 <template>
-  <Base :class="isShowModal ? 'modal-open' : ''">
+  <Base :class="isShownModal ? 'modal-open' : ''">
     <template #title>
       <IconWithText icon-class="bi-geo-alt"> スポットの投稿 </IconWithText>
     </template>

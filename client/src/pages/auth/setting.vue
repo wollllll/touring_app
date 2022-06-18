@@ -2,14 +2,14 @@
 import Base from '@/components/layouts/Base'
 import Section from '@/components/layouts/Section'
 import UserEdit from '@/components/users/Edit'
-import HeadingTitle from '@/components/viewParts/HeadingTitle'
+import Heading from '@/components/viewParts/Heading'
 import Step from '@/components/viewParts/Step'
 </script>
 
 <template>
   <Base>
     <Section>
-      <HeadingTitle>アカウント設定</HeadingTitle>
+      <Heading>アカウント設定</Heading>
       <Step />
       <UserEdit />
     </Section>

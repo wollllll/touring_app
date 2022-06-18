@@ -1,9 +1,8 @@
 <script setup>
 import { spotService } from '@/services/spotService'
-import { ref } from 'vue'
+import { computed } from 'vue'
 
-const show = ref(spotService.getters.spot())
-console.log('carousel')
+const spot = computed(() => spotService.getters.spot())
 </script>
 
 <template>

@@ -1,30 +1,20 @@
 <script setup>
-import { auth } from '@/axios/auth'
 import Avatar from '@/components/users/Avatar'
 import IconWithText from '@/components/viewParts/IconWithText'
-import { alertService } from '@/services/alertService'
 import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
-import { computed } from 'vue'
+import { computed, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 
-const user = computed(() => authService.getters.auth().value)
 const router = useRouter()
+const user = computed(() => authService.getters.auth().value)
 
 const logout = () => {
-  auth
-    .logout()
-    .then(() => {
-      authService.commit.setAuth(null)
-      router.push({ name: 'top' })
-      alertService.commit.setIsShownSuccess(true)
-      alertService.commit.setSuccessText('ログアウトしました。')
-      setTimeout(() => {
-        alertService.commit.setIsShownSuccess(false)
-        alertService.commit.setSuccessText('')
-      }, 3000)
-    })
-    .catch((error) => console.log(error))
+  authService.logout()
+
+  nextTick(() => {
+    router.push({ name: 'top' })
+  })
 }
 </script>
 
@@ -37,7 +27,7 @@ const logout = () => {
     >
       <li>
         <router-link :to="{ name: 'user_show', params: { id: user.id } }">
-          <IconWithText icon-class="bi-person"> アカウント </IconWithText>
+          <IconWithText icon-class="bi-person"> アカウント</IconWithText>
         </router-link>
       </li>
       <li>
@@ -45,7 +35,7 @@ const logout = () => {
           :to="{ name: 'top' }"
           @click="modalService.commit.setIsShownSpotByCreate(true)"
         >
-          <IconWithText icon-class="bi-geo-alt"> スポットの投稿 </IconWithText>
+          <IconWithText icon-class="bi-geo-alt"> スポットの投稿</IconWithText>
         </router-link>
       </li>
       <li>

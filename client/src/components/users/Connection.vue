@@ -1,11 +1,11 @@
 <script setup>
 import Profile from '@/components/users/Profile'
-import HeadingTitle from '@/components/viewParts/HeadingTitle'
+import Heading from '@/components/viewParts/Heading'
 import users from '@/fakers/users'
 import { useRoute } from 'vue-router'
 
 const props = defineProps({
-  headingTitle: String,
+  Heading: String,
 })
 let isUserFollowPage = false
 let isUserFollowerPage = false
@@ -22,7 +22,7 @@ switch (useRoute().name) {
 
 <template>
   <div>
-    <HeadingTitle>{{ headingTitle }}</HeadingTitle>
+    <Heading>{{ Heading }}</Heading>
     <div class="tabs">
       <router-link
         :to="{ name: 'user_follow' }"

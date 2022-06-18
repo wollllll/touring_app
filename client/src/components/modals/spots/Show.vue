@@ -9,13 +9,13 @@ import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
 import { computed } from 'vue'
 
-const isShowModal = modalService.getters.isShownSpotByShow()
+const isShownModal = modalService.getters.isShownSpotByShow()
 const spot = computed(() => spotService.getters.spot().value)
 const auth = computed(() => authService.getters.auth().value)
 </script>
 
 <template>
-  <Base :class="isShowModal ? 'modal-open' : ''">
+  <Base :class="isShownModal ? 'modal-open' : ''">
     <template #title>
       <IconWithText icon-class="bi-geo-alt">
         {{ spot.name }}

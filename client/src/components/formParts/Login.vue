@@ -1,5 +1,4 @@
 <script setup>
-import { auth } from '@/axios/auth'
 import GoogleLogin from '@/components/buttons/Google'
 import LineLogin from '@/components/buttons/Line'
 import PrimaryButton from '@/components/buttons/PrimaryButton'
@@ -8,9 +7,8 @@ import FormControl from '@/components/formParts/FormControl'
 import Input from '@/components/formParts/Input'
 import Label from '@/components/formParts/Label'
 import IconWithText from '@/components/viewParts/IconWithText'
-import { alertService } from '@/services/alertService'
 import { authService } from '@/services/authService'
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -18,20 +16,11 @@ const email = ref('')
 const password = ref('')
 
 const login = () => {
-  auth
-    .login({ email: email.value, password: password.value })
-    .then((response) => {
-      authService.commit.setAuth(response.data.auth)
-      router.push({ name: 'top' })
-      alertService.commit.setIsShownSuccess(true)
-      alertService.commit.setSuccessText('ログインしました。')
+  authService.login({ email: email.value, password: password.value })
 
-      setTimeout(() => {
-        alertService.commit.setIsShownSuccess(false)
-        alertService.commit.setSuccessText('')
-      }, 3000)
-    })
-    .catch((error) => console.log(error))
+  nextTick(() => {
+    router.push({ name: 'top' })
+  })
 }
 </script>
 

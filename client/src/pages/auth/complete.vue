@@ -2,14 +2,14 @@
 import Information from '@/components/alerts/Information'
 import Base from '@/components/layouts/Base'
 import Section from '@/components/layouts/Section'
-import HeadingTitle from '@/components/viewParts/HeadingTitle'
+import Heading from '@/components/viewParts/Heading'
 import Step from '@/components/viewParts/Step'
 </script>
 
 <template>
   <Base>
     <Section>
-      <HeadingTitle>アカウント登録完了</HeadingTitle>
+      <Heading>アカウント登録完了</Heading>
       <Step />
       <Information class="mt-5">
         <p>アカウントの登録が完了しました！</p>

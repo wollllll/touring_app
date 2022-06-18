@@ -5,35 +5,31 @@ import Section from '@/components/layouts/Section'
 import Spot from '@/components/spots/Show'
 import Profile from '@/components/users/Profile'
 import Breadcrumb from '@/components/viewParts/Breadcrumb'
-import HeadingTitle from '@/components/viewParts/HeadingTitle'
+import Heading from '@/components/viewParts/Heading'
 import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
 import { ref } from 'vue'
 
 const spots = ref({})
+const auth = ref(authService.getters.auth())
+
 const setSpot = (spot) => {
   spotService.commit.setSpot(spot)
   modalService.commit.setIsShownSpotByShow(true)
 }
 
-const auth = ref(authService.getters.auth())
-
 spot
   .get()
-  .then((response) => {
-    spots.value = response.data.spots
-  })
-  .catch((error) => {
-    console.log(error)
-  })
+  .then((response) => (spots.value = response.data.spots))
+  .catch((error) => console.log(error))
 </script>
 
 <template>
   <Base>
     <Breadcrumb />
     <Section>
-      <HeadingTitle>プロフィール</HeadingTitle>
+      <Heading>プロフィール</Heading>
       <div class="card bg-white shadow">
         <div class="card-body">
           <Profile v-if="auth" :show-follow="true" :user="auth" />
@@ -41,7 +37,7 @@ spot
       </div>
     </Section>
     <Section>
-      <HeadingTitle>投稿スポット</HeadingTitle>
+      <Heading>投稿スポット</Heading>
       <ul class="lg:grid lg:grid-cols-2">
         <li
           :key="spot.id"
