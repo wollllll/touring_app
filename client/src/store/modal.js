@@ -4,12 +4,14 @@ export const modal = {
     isShownSpotByShow: false,
     isShownSpotByCreate: false,
     isShownSpotByEdit: false,
+    isShownSpotByDestroy: false,
     isShownSearch: false,
   },
   getters: {
     isShownSpotByShow: (state) => state.isShownSpotByShow,
     isShownSpotByCreate: (state) => state.isShownSpotByCreate,
     isShownSpotByEdit: (state) => state.isShownSpotByEdit,
+    isShownSpotByDestroy: (state) => state.isShownSpotByDestroy,
     isShownSearch: (state) => state.isShownSearch,
   },
   mutations: {
@@ -21,6 +23,9 @@ export const modal = {
     },
     setIsShownSpotByEdit(state, bool) {
       state.isShownSpotByEdit = bool
+    },
+    setIsShownSpotByDestroy(state, bool) {
+      state.isShownSpotByDestroy = bool
     },
     setIsShownSearch(state, bool) {
       state.isShownSearch = bool

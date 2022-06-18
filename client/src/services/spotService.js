@@ -56,6 +56,7 @@ export const spotService = {
 
         spotService.commit.setSpot({})
         spotService.commit.setSpots(spots)
+        modalService.commit.setIsShownSpotByDestroy(false)
         modalService.commit.setIsShownSpotByShow(false)
         alertService.commit.setIsShownSuccess(true)
         alertService.commit.setSuccessText(response.data.message)

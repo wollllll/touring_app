@@ -32,7 +32,7 @@ module.exports = {
           'info': '#91C3FD',
           'success': '#CCF0DB',
           'warning': '#FFF5CB',
-          'error': '#ff5724',
+          'error': '#F87171',
         },
       },
     ],

@@ -12,6 +12,9 @@ export const modalService = {
     isShownSpotByEdit() {
       return computed(() => store.getters['modal/isShownSpotByEdit'])
     },
+    isShownSpotByDestroy() {
+      return computed(() => store.getters['modal/isShownSpotByDestroy'])
+    },
     isShownSearch() {
       return computed(() => store.getters['modal/isShownSearch'])
     },
@@ -25,6 +28,9 @@ export const modalService = {
     },
     setIsShownSpotByEdit(bool) {
       store.commit('modal/setIsShownSpotByEdit', bool)
+    },
+    setIsShownSpotByDestroy(bool) {
+      store.commit('modal/setIsShownSpotByDestroy', bool)
     },
     setIsShownSearch(bool) {
       store.commit('modal/setIsShownSearch', bool)

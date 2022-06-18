@@ -12,10 +12,6 @@ import { computed } from 'vue'
 const isShowModal = modalService.getters.isShownSpotByShow()
 const spot = computed(() => spotService.getters.spot().value)
 const auth = computed(() => authService.getters.auth().value)
-
-const destroy = () => {
-  spotService.delete(spot.value.id)
-}
 </script>
 
 <template>
@@ -54,21 +50,17 @@ const destroy = () => {
               class="dropdown-content menu bg-base-100 rounded-box w-32 p-2 shadow-md"
             >
               <li>
-                <router-link
-                  :to="{ name: 'top' }"
-                  @click="modalService.commit.setIsShownSpotByEdit(true)"
-                >
+                <div @click="modalService.commit.setIsShownSpotByEdit(true)">
                   <IconWithText icon-class="bi-gear"> 編集 </IconWithText>
-                </router-link>
+                </div>
               </li>
               <li>
-                <router-link
-                  :to="{ name: 'top' }"
-                  @click="destroy"
-                  class="text-red-600"
+                <div
+                  @click="modalService.commit.setIsShownSpotByDestroy(true)"
+                  class="text-error"
                 >
                   <IconWithText icon-class="bi-trash"> 削除 </IconWithText>
-                </router-link>
+                </div>
               </li>
             </ul>
           </div>
