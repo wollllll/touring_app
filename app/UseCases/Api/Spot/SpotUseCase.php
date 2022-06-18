@@ -4,6 +4,7 @@ namespace App\UseCases\Api\Spot;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Spot\SpotResource;
+use App\Models\Spot;
 use App\Services\Api\Spot\SpotService;
 
 class SpotUseCase extends Controller
@@ -38,6 +39,19 @@ class SpotUseCase extends Controller
     {
         return [
             'spot' => new SpotResource($this->spotService->store($inputs))
+        ];
+    }
+
+    /**
+     * @param Spot $spot
+     * @param array $inputs
+     * @return SpotResource[]
+     * @throws \Exception
+     */
+    public function update(Spot $spot, array $inputs): array
+    {
+        return [
+            'spot' => new SpotResource($this->spotService->update($spot, $inputs))
         ];
     }
 }

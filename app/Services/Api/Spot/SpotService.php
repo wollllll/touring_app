@@ -49,4 +49,26 @@ class SpotService extends Controller
             throw $e;
         }
     }
+
+    /**
+     * @param Spot $spot
+     * @param array $inputs
+     * @return Spot
+     * @throws \Exception
+     */
+    public function update(Spot $spot, array $inputs): Spot
+    {
+        DB::beginTransaction();
+
+        try {
+            $this->spotRepository->update($spot, $inputs);
+
+            DB::commit();
+
+            return $spot;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
 }

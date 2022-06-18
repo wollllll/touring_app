@@ -27,4 +27,15 @@ class SpotRepository extends BaseRepository
         return $this->spot
             ->create($inputs);
     }
+
+    /**
+     * @param Spot $spot
+     * @param array $inputs
+     * @return bool
+     */
+    public function update(Spot $spot, array $inputs): bool
+    {
+        return $spot
+            ->update($inputs);
+    }
 }

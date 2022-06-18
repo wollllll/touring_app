@@ -7,4 +7,7 @@ export const spot = {
   store(inputs) {
     return axios.base.post('api/spots', inputs)
   },
+    update(id, inputs) {
+        return axios.base.patch(`api/spots/${id}`, inputs)
+    },
 }

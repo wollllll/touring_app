@@ -7,7 +7,7 @@ import IconWithText from '@/components/viewParts/IconWithText'
 import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 const isShowModal = modalService.getters.isShownSpotByShow()
 const spot = computed(() => spotService.getters.spot().value)
@@ -52,7 +52,7 @@ const auth = computed(() => authService.getters.auth().value)
               <li>
                 <router-link
                   :to="{ name: 'top' }"
-                  @click="modalService.commit.setIsShownSpotByCreate(true)"
+                  @click="modalService.commit.setIsShownSpotByEdit(true)"
                 >
                   <IconWithText icon-class="bi-gear"> 編集 </IconWithText>
                 </router-link>

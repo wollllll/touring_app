@@ -25,6 +25,21 @@ export const spotService = {
       })
       .catch((error) => console.log(error))
   },
+    update(id, inputs) {
+        spot
+            .update(id, inputs)
+            .then((response) => {
+                spotService.commit.setSpot(response.data.spot)
+                modalService.commit.setIsShownSpotByEdit(false)
+                alertService.commit.setIsShownSuccess(true)
+                alertService.commit.setSuccessText('スポットを更新しました！')
+                setTimeout(() => {
+                    alertService.commit.setIsShownSuccess(false)
+                    alertService.commit.setSuccessText('')
+                }, 3000)
+            })
+            .catch((error) => console.log(error))
+    },
   getters: {
     spots() {
       return computed(() => store.getters['spot/spots'])

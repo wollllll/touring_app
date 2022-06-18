@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Spot;
 
 use App\Http\Controllers\Controller;
+use App\Models\Spot;
 use App\UseCases\Api\Spot\SpotUseCase;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -39,15 +40,14 @@ class SpotController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Spot $spot
+     * @param Request $request
+     * @return JsonResponse
+     * @throws Exception
      */
-    public function update(Request $request, $id)
+    public function update(Spot $spot, Request $request): JsonResponse
     {
-        //
+        return response()->json($this->useCase->update($spot, $request->input()));
     }
 
     /**
