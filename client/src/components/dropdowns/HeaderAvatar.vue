@@ -5,6 +5,9 @@ import IconWithText from '@/components/viewParts/IconWithText'
 import { alertService } from '@/services/alertService'
 import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
+import { computed } from 'vue'
+
+const user = computed(() => authService.getters.auth().value)
 
 const logout = () => {
   auth
@@ -30,7 +33,7 @@ const logout = () => {
       class="menu menu-compact dropdown-content bg-base-100 rounded-box w-52 p-2 mt-3 shadow"
     >
       <li>
-        <router-link :to="{ name: 'user_show', params: { id: 1 } }">
+        <router-link :to="{ name: 'user_show', params: { id: user.id } }">
           <IconWithText icon-class="bi-person"> アカウント </IconWithText>
         </router-link>
       </li>

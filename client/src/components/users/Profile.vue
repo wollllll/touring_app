@@ -1,18 +1,18 @@
 <script setup>
 import PrimaryButton from '@/components/buttons/PrimaryButton'
 import Avatar from '@/components/users/Avatar'
+import { authService } from '@/services/authService'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import {computed} from "vue";
-import {authService} from "@/services/authService";
 
 const props = defineProps({
-    user: {
-        type: Object,
-    },
-    showFollow: {
-        type: Boolean,
-        default: false,
-    },
+  user: {
+    type: Object,
+  },
+  showFollow: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const router = useRouter()
@@ -40,9 +40,11 @@ const auth = computed(() => authService.getters.auth().value)
         </div>
       </div>
       <div class="flex items-center">
-          <template v-if="auth">
-              <PrimaryButton v-if="user.id !== auth.id" class="btn-sm w-auto mt-0"> フォロー中 </PrimaryButton>
-          </template>
+        <template v-if="auth">
+          <PrimaryButton v-if="user.id !== auth.id" class="btn-sm w-auto mt-0">
+            フォロー中
+          </PrimaryButton>
+        </template>
       </div>
     </div>
     <p class="mt-3">

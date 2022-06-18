@@ -4,12 +4,14 @@ import CloseButton from '@/components/modals/CloseButton'
 import Profile from '@/components/users/Profile'
 import Carousel from '@/components/viewParts/Carousel'
 import IconWithText from '@/components/viewParts/IconWithText'
+import { authService } from '@/services/authService'
 import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
-const spot = ref(spotService.getters.showSpot())
 const isShowModal = modalService.getters.isShownSpot()
+const spot = computed(() => spotService.getters.showSpot().value)
+const auth = computed(() => authService.getters.auth().value)
 </script>
 
 <template>
@@ -26,15 +28,47 @@ const isShowModal = modalService.getters.isShownSpot()
       <Carousel />
       <div class="flex justify-between">
         <div class="flex items-center">
-          <p class="font-bold">{{ spot.created_at }}</p>
+          <label class="swap hover:opacity-75">
+            <input type="checkbox" />
+            <i class="bi bi-star swap-off text-2xl fill-current" />
+            <i
+              class="bi bi-star-fill swap-on text-2xl text-yellow-400 fill-current"
+            />
+          </label>
+          <p class="ml-3 font-bold">{{ spot.created_at }}</p>
         </div>
-        <label class="swap">
-          <input type="checkbox" />
-          <i class="bi bi-star swap-off text-2xl fill-current" />
-          <i
-            class="bi bi-star-fill swap-on text-2xl text-yellow-400 fill-current"
-          />
-        </label>
+        <template v-if="spot.user && auth">
+          <div class="dropdown dropdown-end">
+            <label tabindex="0">
+              <i
+                v-if="spot.user.id === auth.id"
+                class="bi bi-list hover:opacity-75 text-2xl cursor-pointer"
+              />
+            </label>
+            <ul
+              tabindex="0"
+              class="dropdown-content menu bg-base-100 rounded-box w-32 p-2 shadow-md"
+            >
+              <li>
+                <router-link
+                  :to="{ name: 'top' }"
+                  @click="modalService.commit.setIsShownCreateSpot(true)"
+                >
+                  <IconWithText icon-class="bi-gear"> 編集 </IconWithText>
+                </router-link>
+              </li>
+              <li>
+                <router-link
+                  :to="{ name: 'top' }"
+                  @click="modalService.commit.setIsShownCreateSpot(true)"
+                  class="text-red-600"
+                >
+                  <IconWithText icon-class="bi-trash"> 削除 </IconWithText>
+                </router-link>
+              </li>
+            </ul>
+          </div>
+        </template>
       </div>
       <p>{{ spot.content }}</p>
       <Profile
