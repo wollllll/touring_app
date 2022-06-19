@@ -24,7 +24,9 @@ const destroy = () => {
       </IconWithText>
     </template>
     <template #close>
-      <CloseButton @click="modalService.commit.setIsShownSpotByDestroy(false)" />
+      <CloseButton
+        @click="modalService.commit.setIsShownSpotByDestroy(false)"
+      />
     </template>
     <template #content>
       <div class="flex justify-end mt-5">

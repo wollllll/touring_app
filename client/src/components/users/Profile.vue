@@ -42,30 +42,30 @@ const auth = computed(() => authService.getters.auth().value)
           </template>
         </div>
       </div>
-<!--      <div class="flex items-center">-->
-<!--        <template v-if="auth">-->
-<!--          <PrimaryButton v-if="user.id !== auth.id" class="btn-sm w-auto mt-0">-->
-<!--            フォロー中-->
-<!--          </PrimaryButton>-->
-<!--        </template>-->
-<!--      </div>-->
+      <!--      <div class="flex items-center">-->
+      <!--        <template v-if="auth">-->
+      <!--          <PrimaryButton v-if="user.id !== auth.id" class="btn-sm w-auto mt-0">-->
+      <!--            フォロー中-->
+      <!--          </PrimaryButton>-->
+      <!--        </template>-->
+      <!--      </div>-->
     </div>
     <p class="mt-3">
       {{ user.profile }}
     </p>
-<!--    <p v-if="showFollow" class="mt-3 text-sm text-right">-->
-<!--      <router-link-->
-<!--        :to="{ name: 'user_follow', params: { id: user.id } }"-->
-<!--        class="hover:opacity-75"-->
-<!--      >-->
-<!--        <span class="font-bold">100</span>&nbsp;フォロー-->
-<!--      </router-link>-->
-<!--      <router-link-->
-<!--        :to="{ name: 'user_follow', params: { id: user.id } }"-->
-<!--        class="hover:opacity-75 ml-1"-->
-<!--      >-->
-<!--        <span class="font-bold">50</span>&nbsp;フォロワー-->
-<!--      </router-link>-->
-<!--    </p>-->
+    <!--    <p v-if="showFollow" class="mt-3 text-sm text-right">-->
+    <!--      <router-link-->
+    <!--        :to="{ name: 'user_follow', params: { id: user.id } }"-->
+    <!--        class="hover:opacity-75"-->
+    <!--      >-->
+    <!--        <span class="font-bold">100</span>&nbsp;フォロー-->
+    <!--      </router-link>-->
+    <!--      <router-link-->
+    <!--        :to="{ name: 'user_follow', params: { id: user.id } }"-->
+    <!--        class="hover:opacity-75 ml-1"-->
+    <!--      >-->
+    <!--        <span class="font-bold">50</span>&nbsp;フォロワー-->
+    <!--      </router-link>-->
+    <!--    </p>-->
   </article>
 </template>

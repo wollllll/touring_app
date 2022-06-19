@@ -37,8 +37,8 @@ const store = () => {
 
 navigator.geolocation.getCurrentPosition(
   (response) => {
-      latitude.value = response.coords.latitude
-      longitude.value = response.coords.longitude
+    latitude.value = response.coords.latitude
+    longitude.value = response.coords.longitude
   },
   (error) => {
     alert('現在地を有効にしてください。')

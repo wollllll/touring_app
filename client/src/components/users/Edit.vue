@@ -6,16 +6,13 @@ import Label from '@/components/formParts/Label'
 import TextArea from '@/components/formParts/TextArea'
 import Avatar from '@/components/users/Avatar'
 import IconWithText from '@/components/viewParts/IconWithText'
+import { userService } from '@/services/userService'
 
 const props = defineProps({
   auth: Object,
 })
 
 const auth = props.auth
-
-const update = () => {
-    console.log(auth)
-}
 </script>
 
 <template>
@@ -118,7 +115,10 @@ const update = () => {
         </template>
       </FormControl>
       <div class="mt-5 text-right">
-        <PrimaryButton @click="update" class="w-auto">
+        <PrimaryButton
+          @click="userService.update(auth.id, auth)"
+          class="w-auto"
+        >
           <IconWithText icon-class="bi-save"> 更新 </IconWithText>
         </PrimaryButton>
       </div>

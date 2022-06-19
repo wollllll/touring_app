@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Spot\Get\GetSpotByUserIdController;
 use App\Http\Controllers\Api\Spot\SpotController;
 use App\Http\Controllers\Api\User\Find\FindUserController;
+use App\Http\Controllers\Api\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,7 @@ Route::resource('spots', SpotController::class)->only(['index']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', LogoutController::class);
 
+    Route::resource('users', UserController::class)->only(['update']);
     Route::resource('spots', SpotController::class)->only(['store', 'update', 'destroy']);
 
     Route::prefix('get/')->group(function () {
