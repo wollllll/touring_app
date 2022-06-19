@@ -17,19 +17,18 @@ const isShownModal = computed(
   () => modalService.getters.isShownSpotByCreate().value
 )
 
-const currentPosition = ref({})
 const name = ref('')
 const content = ref('')
+const latitude = ref(null)
+const longitude = ref(null)
 
 const store = () => {
-  const position = currentPosition.value.position
-
   spotService.store({
     user_id: auth.value.id,
     name: name.value,
     content: content.value,
-    latitude: position.lat,
-    longitude: position.lng,
+    latitude: latitude.value,
+    longitude: longitude.value,
   })
 
   name.value = ''
@@ -38,12 +37,8 @@ const store = () => {
 
 navigator.geolocation.getCurrentPosition(
   (response) => {
-    currentPosition.value = {
-      position: {
-        lat: response.coords.latitude,
-        lng: response.coords.longitude,
-      },
-    }
+      latitude.value = response.coords.latitude
+      longitude.value = response.coords.longitude
   },
   (error) => {
     alert('現在地を有効にしてください。')
@@ -101,6 +96,7 @@ navigator.geolocation.getCurrentPosition(
               placeholder="緯度"
               disabled
               class="mt-0 mr-1"
+              :value="latitude"
             />
           </template>
         </FormControl>
@@ -116,6 +112,7 @@ navigator.geolocation.getCurrentPosition(
               placeholder="経度"
               disabled
               class="mt-0 ml-1"
+              :value="longitude"
             />
           </template>
         </FormControl>
