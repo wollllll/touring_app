@@ -6,10 +6,16 @@ import Label from '@/components/formParts/Label'
 import TextArea from '@/components/formParts/TextArea'
 import Avatar from '@/components/users/Avatar'
 import IconWithText from '@/components/viewParts/IconWithText'
-import { authService } from '@/services/authService'
-import { computed } from 'vue'
 
-const auth = computed(() => authService.getters.auth().value)
+const props = defineProps({
+  auth: Object,
+})
+
+const auth = props.auth
+
+const update = () => {
+    console.log(auth)
+}
 </script>
 
 <template>
@@ -26,12 +32,17 @@ const auth = computed(() => authService.getters.auth().value)
           <Label for="edit_user_name" :required="true">ユーザー名</Label>
         </template>
         <template #input>
-          <Input
-            type="text"
-            id="edit_user_name"
-            placeholder="ユーザー名"
-            v-model="auth.name"
-          />
+          <template v-if="auth">
+            <Input
+              type="text"
+              id="edit_user_name"
+              placeholder="ユーザー名"
+              v-model="auth.name"
+            />
+          </template>
+          <template v-else>
+            <Input type="text" id="create_user_name" placeholder="ユーザー名" />
+          </template>
         </template>
       </FormControl>
       <FormControl>
@@ -39,12 +50,21 @@ const auth = computed(() => authService.getters.auth().value)
           <Label for="edit_user_email" :required="true">メールアドレス</Label>
         </template>
         <template #input>
-          <Input
-            type="email"
-            id="edit_user_email"
-            placeholder="メールアドレス"
-            v-model="auth.email"
-          />
+          <template v-if="auth">
+            <Input
+              type="email"
+              id="edit_user_email"
+              placeholder="メールアドレス"
+              v-model="auth.email"
+            />
+          </template>
+          <template v-else>
+            <Input
+              type="email"
+              id="create_user_email"
+              placeholder="メールアドレス"
+            />
+          </template>
         </template>
       </FormControl>
       <FormControl>
@@ -68,7 +88,7 @@ const auth = computed(() => authService.getters.auth().value)
         <template #input>
           <Input
             type="password"
-            id="edit_user_password_confirm"
+            id="create_user_password_confirm"
             placeholder="パスワード再入力"
           />
         </template>
@@ -78,18 +98,28 @@ const auth = computed(() => authService.getters.auth().value)
           <Label for="edit_user_profile" :required="true">プロフィール</Label>
         </template>
         <template #input>
-          <TextArea
-            label="プロフィール"
-            id="edit_user_profile"
-            placeholder="プロフィール"
-            :rows="5"
-            v-model="auth.profile"
-          />
+          <template v-if="auth">
+            <TextArea
+              label="プロフィール"
+              id="edit_user_profile"
+              placeholder="プロフィール"
+              :rows="5"
+              v-model="auth.profile"
+            />
+          </template>
+          <template v-else>
+            <TextArea
+              label="プロフィール"
+              id="create_user_profile"
+              placeholder="プロフィール"
+              :rows="5"
+            />
+          </template>
         </template>
       </FormControl>
       <div class="mt-5 text-right">
-        <PrimaryButton class="w-auto">
-          <IconWithText icon-class="bi-save"> 保存 </IconWithText>
+        <PrimaryButton @click="update" class="w-auto">
+          <IconWithText icon-class="bi-save"> 更新 </IconWithText>
         </PrimaryButton>
       </div>
     </div>

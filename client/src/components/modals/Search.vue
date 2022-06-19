@@ -26,9 +26,9 @@ const isShowModal = modalService.getters.isShownSearch()
         <div class="lg:col-span-2">
           <CheckBox>お気に入りスポット</CheckBox>
         </div>
-        <div class="lg:col-start-4 lg:col-span-2 lg:mt-0 mt-3">
-          <CheckBox>フォローアカウント</CheckBox>
-        </div>
+<!--        <div class="lg:col-start-4 lg:col-span-2 lg:mt-0 mt-3">-->
+<!--          <CheckBox>フォローアカウント</CheckBox>-->
+<!--        </div>-->
       </div>
       <div class="mt-5 text-right">
         <PrimaryButton class="btn-md w-auto">
