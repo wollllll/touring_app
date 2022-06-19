@@ -1,5 +1,5 @@
 <script setup>
-import { spot as axiosBySpot } from '@/axios/spot'
+import { user as userAxios } from '@/axios/user'
 import Base from '@/components/layouts/Base'
 import Section from '@/components/layouts/Section'
 import Spot from '@/components/spots/Show'
@@ -11,10 +11,8 @@ import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import {user as axiosByUser} from "@/axios/user";
 
 const route = useRoute()
-const spots = ref({})
 const auth = computed(() => authService.getters.auth().value)
 const user = ref(null)
 
@@ -23,17 +21,10 @@ const setSpot = (spot) => {
   modalService.commit.setIsShownSpotByShow(true)
 }
 
-axiosBySpot
-  .getByUserId({ user_id: route.params.id })
-  .then((response) => (spots.value = response.data.spots))
+userAxios
+  .find({ id: route.params.id })
+  .then((response) => (user.value = response.data.user))
   .catch((error) => console.log(error))
-
-axiosByUser
-    .find({id: route.params.id})
-    .then((response) => {
-        user.value = response.data.user
-    })
-    .catch((error) => console.log(error))
 </script>
 
 <template>
@@ -49,16 +40,18 @@ axiosByUser
     </Section>
     <Section>
       <Heading>投稿スポット</Heading>
-      <ul class="lg:grid lg:grid-cols-2">
-        <li
-          :key="spot.id"
-          v-for="spot in spots"
-          class="lg:odd:mr-auto lg:even:ml-auto lg:col-span-1 mb-6"
-          style="width: 98%"
-        >
-          <Spot :spot="spot" @click="setSpot(spot)" />
-        </li>
-      </ul>
+      <template v-if="user">
+        <ul class="lg:grid lg:grid-cols-2">
+          <li
+            :key="spot.id"
+            v-for="spot in user.spots"
+            class="lg:odd:mr-auto lg:even:ml-auto lg:col-span-1 mb-6"
+            style="width: 98%"
+          >
+            <Spot :spot="spot" @click="setSpot(spot)" />
+          </li>
+        </ul>
+      </template>
     </Section>
   </Base>
 </template>

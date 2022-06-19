@@ -7,16 +7,16 @@ axios.base
   .catch((error) => console.log(error))
 
 export const auth = {
-  login(data) {
-    return axios.base.post('login', {
+  login: async (data) => {
+    return await axios.base.post('login', {
       email: data.email,
       password: data.password,
     })
   },
-  logout() {
-    return axios.base.post('logout')
+  logout: async () => {
+    return await axios.base.post('logout')
   },
-  get() {
-    return axios.base.get('get/auth')
+  get: async () => {
+    return await axios.base.get('get/auth')
   },
 }

@@ -20,6 +20,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', LoginController::class);
+
+Route::prefix('find/')->group(function () {
+    Route::prefix('users/')->group(function () {
+        Route::get('/', FindUserController::class);
+    });
+});
+
+Route::prefix('get/')->group(function () {
+    Route::prefix('spots/')->group(function () {
+        Route::get('by_user_id', GetSpotByUserIdController::class);
+    });
+});
+
 Route::resource('spots', SpotController::class)->only(['index']);
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -27,17 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('spots', SpotController::class)->only(['store', 'update', 'destroy']);
 
-    Route::prefix('find/')->group(function () {
-        Route::prefix('users/')->group(function () {
-            Route::get('/', FindUserController::class);
-        });
-    });
-
     Route::prefix('get/')->group(function () {
         Route::get('auth', GetAuthController::class);
-
-        Route::prefix('spots/')->group(function () {
-            Route::get('by_user_id', GetSpotByUserIdController::class);
-        });
     });
 });

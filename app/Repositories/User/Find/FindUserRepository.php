@@ -10,11 +10,12 @@ class FindUserRepository extends BaseRepository
 {
     /**
      * @param array $inputs
-     * @return User
+     * @return User|null
      */
-    public function find(array $inputs): User
+    public function find(array $inputs): ?User
     {
         return $this->user
-            ->findOrFail(Arr::get($inputs, 'id'));
+            ->load(['spots.user'])
+            ->find(Arr::get($inputs, 'id'));
     }
 }

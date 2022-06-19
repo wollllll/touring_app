@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\User;
 
+use App\Http\Resources\Spot\SpotResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,6 +18,7 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'spots' => SpotResource::collection($this->spots),
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,

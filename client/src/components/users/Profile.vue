@@ -2,7 +2,7 @@
 import PrimaryButton from '@/components/buttons/PrimaryButton'
 import Avatar from '@/components/users/Avatar'
 import { authService } from '@/services/authService'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
@@ -28,16 +28,18 @@ const auth = computed(() => authService.getters.auth().value)
           @click="router.push({ name: 'user_show', params: { id: user.id } })"
         >
           <Avatar size="w-10 h-10" />
-          <p class="my-auto ml-3 font-bold">{{ user.name }}</p>
+          <p v-if="user" class="my-auto ml-3 font-bold">{{ user.name }}</p>
         </div>
         <div class="flex items-center ml-3">
-          <router-link
-             v-if="user.id === auth.id"
-            :to="{ name: 'user_edit', params: { id: user.id } }"
-            class="hover:opacity-75"
-          >
-            <i class="bi bi-gear text-lg" />
-          </router-link>
+          <template v-if="auth">
+            <router-link
+              v-if="user.id === auth.id"
+              :to="{ name: 'user_edit', params: { id: user.id } }"
+              class="hover:opacity-75"
+            >
+              <i class="bi bi-gear text-lg" />
+            </router-link>
+          </template>
         </div>
       </div>
       <div class="flex items-center">

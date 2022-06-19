@@ -27,6 +27,7 @@ return new class extends Migration
 
             // relation
             $table->foreign('file_id')->references('id')->on('files');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
