@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Api\Spot\Get;
+namespace App\Http\Controllers\Api\User\Find;
 
 use App\Http\Controllers\Controller;
-use App\UseCases\Api\Spot\Get\GetByUserIdUseCase;
+use App\UseCases\Api\User\Find\FindUserUseCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class GetSpotsByUserIdController extends Controller
+class FindUserController extends Controller
 {
-    /** @var GetByUserIdUseCase  */
-    private GetByUserIdUseCase $useCase;
+    /** @var FindUserUseCase  */
+    private FindUserUseCase $useCase;
 
     /**
-     * @param GetByUserIdUseCase $useCase
+     * @param FindUserUseCase $useCase
      */
-    public function __construct(GetByUserIdUseCase $useCase)
+    public function __construct(FindUserUseCase $useCase)
     {
         $this->useCase = $useCase;
     }

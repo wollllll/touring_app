@@ -1,5 +1,5 @@
 <script setup>
-import { spot } from '@/axios/spot'
+import { spot as axiosBySpot } from '@/axios/spot'
 import Base from '@/components/layouts/Base'
 import Section from '@/components/layouts/Section'
 import Spot from '@/components/spots/Show'
@@ -11,20 +11,29 @@ import { modalService } from '@/services/modalService'
 import { spotService } from '@/services/spotService'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import {user as axiosByUser} from "@/axios/user";
 
 const route = useRoute()
 const spots = ref({})
 const auth = computed(() => authService.getters.auth().value)
+const user = ref(null)
 
 const setSpot = (spot) => {
   spotService.commit.setSpot(spot)
   modalService.commit.setIsShownSpotByShow(true)
 }
 
-spot
+axiosBySpot
   .getByUserId({ user_id: route.params.id })
   .then((response) => (spots.value = response.data.spots))
   .catch((error) => console.log(error))
+
+axiosByUser
+    .find({id: route.params.id})
+    .then((response) => {
+        user.value = response.data.user
+    })
+    .catch((error) => console.log(error))
 </script>
 
 <template>
@@ -34,7 +43,7 @@ spot
       <Heading>プロフィール</Heading>
       <div class="card bg-white shadow">
         <div class="card-body">
-          <Profile v-if="auth" :show-follow="true" :user="auth" />
+          <Profile v-if="user" :show-follow="true" :user="user" />
         </div>
       </div>
     </Section>

@@ -3,18 +3,18 @@
 namespace App\Services\Api\Spot\Get;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Spot\GetSpotsByUserIdRepository;
+use App\Repositories\Spot\Get\GetSpotByUserIdRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class GetSpotsByUserIdService extends Controller
+class GetSpotByUserIdService extends Controller
 {
-    /** @var GetSpotsByUserIdRepository  */
-    private GetSpotsByUserIdRepository $repository;
+    /** @var GetSpotByUserIdRepository  */
+    private GetSpotByUserIdRepository $repository;
 
     /**
-     * @param GetSpotsByUserIdRepository $repository
+     * @param GetSpotByUserIdRepository $repository
      */
-    public function __construct(GetSpotsByUserIdRepository $repository)
+    public function __construct(GetSpotByUserIdRepository $repository)
     {
         $this->repository = $repository;
     }

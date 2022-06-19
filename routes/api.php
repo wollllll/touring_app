@@ -3,8 +3,9 @@
 use App\Http\Controllers\Api\Auth\Get\GetAuthController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
-use App\Http\Controllers\Api\Spot\Get\GetSpotsByUserIdController;
+use App\Http\Controllers\Api\Spot\Get\GetSpotByUserIdController;
 use App\Http\Controllers\Api\Spot\SpotController;
+use App\Http\Controllers\Api\User\Find\FindUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,11 +27,17 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('spots', SpotController::class)->only(['store', 'update', 'destroy']);
 
+    Route::prefix('find/')->group(function () {
+        Route::prefix('users/')->group(function () {
+            Route::get('/', FindUserController::class);
+        });
+    });
+
     Route::prefix('get/')->group(function () {
         Route::get('auth', GetAuthController::class);
 
         Route::prefix('spots/')->group(function () {
-            Route::get('by_user_id', GetSpotsByUserIdController::class);
+            Route::get('by_user_id', GetSpotByUserIdController::class);
         });
     });
 });

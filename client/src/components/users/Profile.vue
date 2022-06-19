@@ -25,13 +25,14 @@ const auth = computed(() => authService.getters.auth().value)
       <div class="flex">
         <div
           class="flex cursor-pointer"
-          @click="router.push({ name: 'user_show', params: { id: 1 } })"
+          @click="router.push({ name: 'user_show', params: { id: user.id } })"
         >
           <Avatar size="w-10 h-10" />
           <p class="my-auto ml-3 font-bold">{{ user.name }}</p>
         </div>
         <div class="flex items-center ml-3">
           <router-link
+             v-if="user.id === auth.id"
             :to="{ name: 'user_edit', params: { id: user.id } }"
             class="hover:opacity-75"
           >

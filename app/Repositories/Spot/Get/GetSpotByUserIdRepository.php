@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Repositories\Spot;
+namespace App\Repositories\Spot\Get;
 
+use App\Repositories\Spot\BaseRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 
-class GetSpotsByUserIdRepository extends BaseRepository
+class GetSpotByUserIdRepository extends BaseRepository
 {
     /**
      * @param array $inputs

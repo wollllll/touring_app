@@ -17,21 +17,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = [
-            [
-                'name' => 'test',
-                'email' => 'test@test',
+        $inserts = [];
+        for ($i = 1; $i <= 1000; $i++) {
+            $inserts[] = [
+                'name' => 'test+' . $i,
+                'email' => 'test+' . $i . '@test',
                 'password' => Hash::make('testtest'),
-                'profile' => 'プロフィール'
-            ],
-            [
-                'name' => 'test+2',
-                'email' => 'test+2@test',
-                'password' => Hash::make('testtest'),
-                'profile' => 'プロフィール'
-            ]
-        ];
+                'profile' => 'プロフィールーーーーー'
+            ];
+        }
 
-        DB::table('users')->insert($users);
+        DB::table('users')->insert($inserts);
     }
 }

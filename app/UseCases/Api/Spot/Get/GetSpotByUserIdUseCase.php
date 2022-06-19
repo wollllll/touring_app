@@ -4,17 +4,17 @@ namespace App\UseCases\Api\Spot\Get;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Spot\SpotResource;
-use App\Services\Api\Spot\Get\GetSpotsByUserIdService;
+use App\Services\Api\Spot\Get\GetSpotByUserIdService;
 
-class GetByUserIdUseCase extends Controller
+class GetSpotByUserIdUseCase extends Controller
 {
-    /** @var GetSpotsByUserIdService  */
-    private GetSpotsByUserIdService $service;
+    /** @var GetSpotByUserIdService  */
+    private GetSpotByUserIdService $service;
 
     /**
-     * @param GetSpotsByUserIdService $service
+     * @param GetSpotByUserIdService $service
      */
-    public function __construct(GetSpotsByUserIdService $service)
+    public function __construct(GetSpotByUserIdService $service)
     {
         $this->service = $service;
     }
