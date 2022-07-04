@@ -1,5 +1,5 @@
-import { alertHelper } from '@/Helpers/AlertHepler'
 import { spot } from '@/axios/spot'
+import { alertHelper } from '@/helpers/alertHepler'
 import { alertService } from '@/services/alertService'
 import { modalService } from '@/services/modalService'
 import { store } from '@/store'

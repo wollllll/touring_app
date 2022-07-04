@@ -4,11 +4,13 @@ export const auth = {
     auth: null,
   },
   getters: {
-    auth: (state) => state.auth,
+    auth(state) {
+      return state.auth
+    },
   },
   mutations: {
-    setAuth(state, user) {
-      state.auth = user
+    setAuth(state, auth) {
+      state.auth = auth
     },
   },
 }

@@ -8,7 +8,8 @@ import Input from '@/components/formParts/Input'
 import Label from '@/components/formParts/Label'
 import IconWithText from '@/components/viewParts/IconWithText'
 import { authService } from '@/services/authService'
-import { nextTick, ref } from 'vue'
+import { store } from '@/store'
+import { ref, watchEffect} from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -18,7 +19,9 @@ const password = ref('')
 const login = () => {
   authService.login({ email: email.value, password: password.value })
 
-  nextTick(() => {
+  watchEffect(() => {
+    if (!store.getters['auth/auth']) return false
+
     router.push({ name: 'top' })
   })
 }

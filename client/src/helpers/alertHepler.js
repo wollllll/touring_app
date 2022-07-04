@@ -9,4 +9,12 @@ export const alertHelper = {
       alertService.commit.setSuccessText('')
     }, ms)
   },
+  error(text, ms = 3000) {
+    alertService.commit.setIsShownError(true)
+    alertService.commit.setErrorText(text)
+    setTimeout(() => {
+      alertService.commit.setIsShownError(false)
+      alertService.commit.setErrorText('')
+    }, ms)
+  },
 }

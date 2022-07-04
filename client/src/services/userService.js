@@ -1,5 +1,5 @@
-import { alertHelper } from '@/Helpers/AlertHepler'
 import { user } from '@/axios/user'
+import { alertHelper } from '@/helpers/alertHepler'
 
 export const userService = {
   update(id, inputs) {

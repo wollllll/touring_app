@@ -13,12 +13,9 @@ class LoginUseCase extends Controller
      */
     public function __invoke(Request $request): array
     {
-        $credentials = $request->validate([
-            "email" => ["required", "email"],
-            "password" => ["required"],
-        ]);
+        $request->authenticate();
 
-        if (!auth()->attempt($credentials)) return ['message' => 'error'];
+        $request->session()->regenerate();
 
         return [
             'auth' => auth()->user(),

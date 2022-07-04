@@ -1,6 +1,5 @@
-import { alertHelper } from '@/Helpers/AlertHepler'
 import { auth } from '@/axios/auth'
-import { alertService } from '@/services/alertService'
+import { alertHelper } from '@/helpers/alertHepler'
 import { store } from '@/store'
 import { computed } from 'vue'
 
@@ -12,7 +11,10 @@ export const authService = {
         authService.commit.setAuth(response.data.auth)
         alertHelper.success(response.data.message)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        alertHelper.error(error.response.data.message)
+      })
   },
   logout() {
     auth
@@ -29,8 +31,8 @@ export const authService = {
     },
   },
   commit: {
-    setAuth(user) {
-      store.commit('auth/setAuth', user)
+    setAuth(auth) {
+      store.commit('auth/setAuth', auth)
     },
   },
 }

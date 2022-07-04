@@ -1,8 +1,7 @@
 <script setup>
-import PrimaryButton from '@/components/buttons/PrimaryButton'
 import Avatar from '@/components/users/Avatar'
 import { authService } from '@/services/authService'
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
